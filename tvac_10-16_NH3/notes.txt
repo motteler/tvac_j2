@@ -1,0 +1,25 @@
+
+TVAC LW NH3 MN side 1, 16 Oct 2014
+
+HTBB T1 360K, T2 320K
+cell 17 C, 39 torr
+
+ET2 start  10:07:00
+ET2 end    10:18:16
+
+ET1 start  11:39:00
+ET1 end    11:50:15
+
+FT2 start  16:24:00
+FT2 end    16:35:15
+
+FT1 start  15:12:00
+FT1 end    15:23:15
+
+NH3 harvest
+
+cat 1000/20141016_10_{07..18}*.dat > ET2.dat
+cat 1100/20141016_11_{39..50}*.dat > ET1.dat
+cat 1600/20141016_16_{24..35}*.dat > FT2.dat
+cat 1500/20141016_15_{12..23}*.dat > FT1.dat
+

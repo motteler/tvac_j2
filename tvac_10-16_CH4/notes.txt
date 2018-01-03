@@ -1,0 +1,25 @@
+
+TVAC MW CH4 MN side 1, 16 Oct 2014
+
+HTBB T1 360K, T2 320K
+cell 16.9 C, 39.5 torr
+
+ET2 start  00:26:55
+ET2 end    00:38:15
+
+ET1 start  01:44:45
+ET1 end    01:56:05
+
+FT2 start  19:02:00
+FT2 end    19:13:17
+
+FT1 start  20:27:00
+FT1 end    20:38:15
+
+CH4 harvest
+
+cat 0000/20141016_00_{26..38}*.dat > ET2.dat
+cat 0100/20141016_01_{44..56}*.dat > ET1.dat
+cat 1900/20141016_19_{02..13}*.dat > FT2.dat
+cat 2000/20141016_20_{27..38}*.dat > FT1.dat
+

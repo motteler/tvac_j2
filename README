@@ -1,0 +1,66 @@
+
+CrIS FM2 tests
+---------------
+
+
+Directories
+------------
+
+doc        - notes and reports
+source     - common source code
+inst_data  - data shared across tests
+bench_CO2  - 2013-09-23 CO2 bench test
+tvac_mm-dd-gas  - fall 2014 TVAC tests
+
+
+Test Scripts
+-------------
+
+fit_run -- set up params, call fit_tran, plot results
+
+fit_plots -- more plots, followup to fit_run
+
+fit_parts -- run fit_tran on a set of obs partitions 
+
+spec_test1 -- quick look at gas cell count spectra harvested with
+    the old-format reader MITreader5b, but using new ccast routines
+    inst_params and igm2spec.
+
+spec_test2 -- compare observed and calculated gas cell transmittance
+    with old-format obs, but using ccast routines and kc2cris from
+    the airs_decon package
+
+spec_test3 -- look at spectral signal to noise ratio
+
+
+Functions
+----------
+
+cmp_tran -- compare observed and calculated transmittances.  
+    a total rewrite of the old FM2008/cmp_tran6, mainly derived
+    from the demo script spec_test2.  There is no params file or
+    defaults--all params are passed in or by inst_params. 
+
+fit_tran -- find wlaser deltas to match obs and calc.  
+    derived from the old script version of fit_tran.  The search
+    was moved to this function, and the rest to a wrapper script
+    to fit_run
+
+fp_default -- build default SRF matrix for new gas cell tests
+
+fp_exelis -- build an SRF matrix from recent Exelis test data
+
+read_igm -- simple wrapper to load IGM data from the MIT reader
+
+fit_info -- print fit_tran residuals and weights
+
+fovcolors -- 9 distinct colors for FOV plots
+
+fovnames --  FOV names for plot legend
+
+
+Laser Tests
+------------
+
+Tests and code from FM2013 needs to be merged into this repo
+
