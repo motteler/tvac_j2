@@ -7,10 +7,10 @@
 %   sfile    - SRF matrix for the current wlaser range
 %   afile    - tabulated absorptions, at 0.0025 cm-1 grid
 %   abswt    - scale factor for tabulated absorptions
-%   mat_et1  - mat file for cell empty, BB t1
 %   mat_et2  - mat file for cell empty, BB t2
-%   mat_ft1  - mat file for cell full, BB t1
+%   mat_et1  - mat file for cell empty, BB t1
 %   mat_ft2  - mat file for cell full, BB t2
+%   mat_ft1  - mat file for cell full, BB t1
 %   sdir     - sweep direction, 0 or 1
 %
 % HM, 15 Jan 2014
@@ -23,20 +23,21 @@ addpath /asl/packages/airs_decon/test
 addpath ../source
 
 % get instrument params
-band = 'LW';
-wlaser = 774.0839;
-opts = struct;
-opts.user_res = 'hires';
-opts.inst_res = 'hires2';
-[inst, user] = inst_params(band, wlaser, opts);
+band = 'SW';
+% wlaser = 771.9574;  % from read_wlaser
+wlaser = 771.970351;  % from neonLW=703.44765
+opt1 = struct; 
+opt1.user_res = 'hires';
+opt1.inst_res = 'hires2';
+[inst, user] = inst_params(band, wlaser, opt1);
 
 % get the SA inverse matrix
-sfile = '../inst_data/SAinv_exel_HR2_LW.mat';
-opts.LW_sfile = sfile;
-Sinv = getSAinv(inst, opts);
+sfile = '../inst_data/SAinv_default_HR2_SW.mat';
+opt1.SW_sfile = sfile;
+Sinv = getSAinv(inst, opt1);
 
 % test data files
-test_dir = '/asl/cris/tvac_2014/2014-10-16_CO2';
+test_dir = '.';
 mat_et2 = fullfile(test_dir, 'ET2');
 mat_et1 = fullfile(test_dir, 'ET1');
 mat_ft2 = fullfile(test_dir, 'FT2');
@@ -52,10 +53,10 @@ count_FT2 = igm2spec(read_igm(band, mat_ft2, sdir), inst);
 count_FT1 = igm2spec(read_igm(band, mat_ft1, sdir), inst);
 
 % option to take subsets
-count_ET2 = count_ET2(:, :, 67:396);
-count_ET1 = count_ET1(:, :, 18:347);
-count_FT2 = count_FT2(:, :, 18:347);
-count_FT1 = count_FT1(:, :, 18:347);
+% count_ET2 = count_ET2(:, :, 187:516);
+% count_ET1 = count_ET1(:, :, 18:347);
+% count_FT2 = count_FT2(:, :, 47:376);
+% count_FT1 = count_FT1(:, :, 18:347);
 
 % take means of the obs
 mean_ET2 = mean(count_ET2, 3);
@@ -74,8 +75,8 @@ end
 tobs = bandpass(inst.freq, tobs, user.v1, user.v2, user.vr);
 
 % get calc values
-abswt = 1.0;
-d1 = load('run8_402t_CO2');
+abswt = 1.2;
+d1 = load('run8_41t_CO');
 [tcal, vcal] = kc2inst(inst, user, exp(-d1.absc * abswt), d1.fr);
 
 % check frequency grids
@@ -95,5 +96,17 @@ grid; zoom on
 xlabel('wavenumber')
 ylabel('transmittance')
 grid on; zoom on
-% saveas(gcf, 'spec_test2', 'fig')
+% saveas(gcf, 'spec_test2_CO_all', 'png')
 
+figure(2); clf
+plot(freq2, tobs2, freq2, tcal2, 'k-.');
+axis([2200,2250,0.7,1.1])
+title('observed and calculated transmittance detail')
+% plot(freq2, tobs2)
+% title('observed transmittance')
+legend(fovnames, 'location', 'southeast')
+grid; zoom on
+xlabel('wavenumber')
+ylabel('transmittance')
+grid on; zoom on
+% saveas(gcf, 'spec_test2_CO_zoom', 'png')

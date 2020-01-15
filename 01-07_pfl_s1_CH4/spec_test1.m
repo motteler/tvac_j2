@@ -18,14 +18,15 @@ addpath /asl/packages/ccast/motmsc/utils
 addpath ../source
 
 % get instrument params
-band = 'LW';
-wlaser = 774.0839;
-opts.user_res = 'hires';
-opts.inst_res = 'hires2';
-[inst, user] = inst_params(band, wlaser, opts);
+band = 'MW';
+wlaser = 771.9574;  % from read_wlaser
+opt1 = struct; 
+opt1.user_res = 'hires';
+opt1.inst_res = 'hires4';
+[inst, user] = inst_params(band, wlaser, opt1);
 
 % choose a test data file
-mfile = '/asl/cris/tvac_2014/2014-10-16_CO2/FT1.mat';
+mfile = './FT2.mat';
 load(mfile);
 
 % choose a sweep direction
@@ -35,19 +36,13 @@ sdir = 0;
 igm = read_igm(band, mfile, sdir);
 
 % option to take subsets
-% igm = igm(:, :, 67:396);   % ET2
+% igm = igm(:, :, 187:516);  % ET2
 % igm = igm(:, :, 18:347);   % ET1
-% igm = igm(:, :, 18:347);   % FT2
-% igm = igm(:, :, 18:347);   % FT1
+% igm = igm(:, :, 47:376);   % FT2
+% igm = igm(:, :, 18:347);  % FT1
 
 % translate to count spectra
 spec = igm2spec(igm, inst);
-
-% apply phase correction
-% spec = pcorr2(spec);
-% if mean(spec(:)) < 0
-%   spec = -spec;
-% end
 
 % use complex magnitude
 spec = abs(spec);
@@ -56,23 +51,23 @@ spec = abs(spec);
 [xx, tname] = fileparts(mfile);
 
 % show all obs for one FOV
-ifov = 1;
-figure(1); clf
-plot(inst.freq, squeeze(spec(:, ifov, :)));
+figure(1);
+ifov = 5;
+plot(inst.freq, squeeze(spec(:, ifov, :)), 'b');
 title(sprintf('test %s FOV %d all obs', tname, ifov))
-xlabel('wavenumber (cm-1)')
+xlabel('wavenumber')
 ylabel('count')
 grid on; zoom on
 
 % show all FOVs at one frequency
+figure(2);
+set(gcf, 'DefaultAxesColorOrder', fovcolors);
 ifrq = floor(inst.npts/2);
-figure(2); clf
 vseq = squeeze(spec(ifrq, :, :));
 [m, nobs] = size(vseq);
-set(gcf, 'DefaultAxesColorOrder', fovcolors);
 plot(1:nobs, vseq)
 title(sprintf('test %s, all FOVs at %.2f cm-1', tname, inst.freq(ifrq)))
-legend(fovnames,  'location', 'southeast')
+legend(fovnames,  'location', 'south')
 xlabel('obs index')
 ylabel('count')
 grid on; zoom on

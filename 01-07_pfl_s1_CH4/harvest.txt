@@ -1,0 +1,75 @@
+
+TVAC analysis home:
+  /asl/gravite/j2cris/readonly/extracted/hourly_archives/J2
+
+get test segment start stop times
+  cat SQLLOGS/2020/01_Jan/??/??00/*.cmd | grep ILS_Spectral_Cal | more
+
+browse tcr files for PFL, PFH, PFN, Plateau number:
+  more SQLLOGS/2020/01_Jan/07/????/*.tcr
+
+Jan 7 MW test legs, Collection/2020/01_Jan/07/????/*.dat
+packets are 8 seconds long
+T1 > T2
+
+-----------------------------------------
+  04:01:24  HTBB A 360.00K, cell empty
+  04:16:28  HTBB B 359.45K
+  axis([4, 4.3, 358, 362])
+
+  packet range
+  20200107_04_01_20_566.dat
+  20200107_04_16_24_566.dat
+
+  superset
+  cat Collection/2020/01_Jan/07/0400/20200107_04_{01..16}_??_???.dat > ~/shome/ET1.dat
+  subset
+  cat Collection/2020/01_Jan/07/0400/20200107_04_{02..15}_??_???.dat > ~/shome/ET1.dat
+
+-----------------------------------------
+  05:56:20  HTBB A c. 320.1K, cell empty
+  06:09:31  HTBB B c. 319.5k
+  axis([5.9, 6.2, 318, 321])
+
+  packet range
+  20200107_05_56_16_566.dat
+  20200107_06_09_28_566.dat
+
+  superset
+  cat Collection/2020/01_Jan/07/0500/20200107_05_{56..59}_??_???.dat > ~/shome/ET2.dat
+  cat Collection/2020/01_Jan/07/0600/20200107_06_{00..09}_??_???.dat >> ~/shome/ET2.dat
+  subset
+  cat Collection/2020/01_Jan/07/0500/20200107_05_{57..59}_??_???.dat > ~/shome/ET2.dat
+  cat Collection/2020/01_Jan/07/0600/20200107_06_{00..08}_??_???.dat >> ~/shome/ET2.dat
+
+-----------------------------------------
+  10:09:47  HTBB A 320.50K, cell full, 44.64 torr, 14.85C
+  10:23:11  HTBB B 319.88K
+  axis([10.1, 10.4, 318, 321])
+
+  packet range
+  20200107_10_09_44_566.dat
+  20200107_10_23_04_566.dat
+
+  superset
+  cat Collection/2020/01_Jan/07/1000/20200107_10_{09..23}_??_???.dat > ~/shome/FT2.dat
+  subset
+  cat Collection/2020/01_Jan/07/1000/20200107_10_{10..22}_??_???.dat > ~/shome/FT2.dat
+
+-----------------------------------------
+  11:49:05  HTBB A c. 360.0K, cell full, 44.65 torr, 14.95C
+  12:03:59  HTBB A c. 359.5K
+  axis([11.82, 12.07, 318, 321])
+
+  20200107_11_49_04_566.dat
+  20200107_12_03_52_566.dat
+
+  superset
+  cat Collection/2020/01_Jan/07/1100/20200107_11_{49..59}_??_???.dat > ~/shome/FT1.dat
+  cat Collection/2020/01_Jan/07/1200/20200107_12_{00..03}_??_???.dat >> ~/shome/FT1.dat
+  subset
+  cat Collection/2020/01_Jan/07/1100/20200107_11_{50..59}_??_???.dat > ~/shome/FT1.dat
+  cat Collection/2020/01_Jan/07/1200/20200107_12_{00..02}_??_???.dat >> ~/shome/FT1.dat
+
+note: packets are 8 seconds long
+

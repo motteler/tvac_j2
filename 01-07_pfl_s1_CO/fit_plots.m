@@ -33,11 +33,11 @@ title('obs minus calc FOV 5')
 legend(fname{ix}, 'location', 'southeast')
 grid on; zoom on
 
-  saveas(gcf, 'CO2_breakout_1', 'png')
-% export_fig('CO2_breakout_1_s1.pdf', '-m2', '-transparent')
+saveas(gcf, 'CO_breakout_1', 'png')
+saveas(gcf, 'CO_breakout_1', 'fig')
 
-figure(5); clf
-set(gcf, 'DefaultAxesColorOrder', fcolor);
+% figure(5); clf
+% set(gcf, 'DefaultAxesColorOrder', fcolor);
 
 subplot(2,1,1)
 ix = [2 4 6 8];
@@ -61,8 +61,8 @@ title('obs minus calc corner FOVs')
 legend(fname{ix}, 'location', 'southeast')
 grid on; zoom on
 
-  saveas(gcf, 'CO2_breakout_2', 'png')
-% export_fig('CO2_breakout_2_s1.pdf', '-m2', '-transparent')
+saveas(gcf, 'CO_breakout_2', 'png')
+saveas(gcf, 'CO_breakout_2', 'fig')
 
 return
 
@@ -79,11 +79,11 @@ figure(6); clf
 set(gcf, 'DefaultAxesColorOrder', fovcolors);
 
 plot(vobs4, tobs5, vobs4, tcal4, 'k-.');
-axis([user.v1, user.v2, 0.4, 1.1])
+axis([user.v1, user.v2, 0.6, 1.1])
 xlabel('wavenumber')
 ylabel('transmittance')
 title(sprintf('%s D%d, obs and calc full band', pname, sdir));
-legend(fovnames, 'location', 'southwest')
+legend(fovnames, 'location', 'southeast')
 grid on; zoom on
 
 % -------------------------
@@ -94,12 +94,14 @@ figure(7); clf
 set(gcf, 'DefaultAxesColorOrder', fovcolors);
 
 plot(vobs4, tdif);
-axis([user.v1, user.v2, -.08, .08])
+axis([user.v1, user.v2, -.02, .02])
 xlabel('wavenumber')
 ylabel('transmittance difference')
 title('obs minus calc full band')
 legend(fovnames, 'location', 'southeast')
 grid on; zoom on
+
+return
 
 % ------------------------------
 % summary stats in tabular form

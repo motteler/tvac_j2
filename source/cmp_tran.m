@@ -51,7 +51,7 @@ function [drms, dmsc] = cmp_tran(band, wlaser, igm, opt);
 [inst, user] = inst_params(band, wlaser, opt);
 
 % get the SA inverse matrix
-Sinv = getSAinv(opt.sfile, inst);
+Sinv = getSAinv(inst, opt);
 
 % get the count spectra
 count_ET1 = igm2spec(igm.ET1, inst);

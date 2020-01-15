@@ -28,10 +28,10 @@ wprint(dmin * 1000)
 [tmin, imin] = min(drms);
 wppm = 1e6* (waxis - wlaser) ./ wlaser;
 wmin = wppm(imin);
-fprintf(1, 'met laser residuals\n')
+fprintf(1, 'met laser residuals, ppm\n')
 wprint(wmin)
 
-fprintf(1, 'met laser relative\n')
+fprintf(1, 'met laser relative, ppm\n')
 wprint(wmin - wmin(5))
 
 % regression weights

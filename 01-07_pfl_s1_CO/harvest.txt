@@ -1,0 +1,42 @@
+
+TVAC analysis home:
+  /asl/gravite/j2cris/readonly/extracted/hourly_archives/J2
+
+get test segment start stop times
+  cat SQLLOGS/2020/01_Jan/??/??00/*.cmd | grep ILS_Spectral_Cal | more
+
+browse tcr files for PFL, PFH, PFN, Plateau number:
+  more SQLLOGS/2020/01_Jan/08/????/*.tcr
+
+Jan 7 MW test legs, Collection/2020/01_Jan/07/????/*.dat
+
+packets are 8 seconds long, T1 > T2
+
+---- SW 8 Jan CO test -----
+
+ET2, HTBB 320K, cell empty
+23:58:17 
+00:11:17
+
+ET1, HTBB 335K, cell empty
+02:21:09
+02:33:43
+
+FT1, HTBB 335K, cell full, 45.9 torr, 14.85C
+02:58:03
+03:11:02
+
+FT2, HTBB 320K, cell full, 45.9 torr, 14.85C 
+04:55:57
+05:09:35
+
+cat Collection/2020/01_Jan/08/0000/20200108_00_{00..10}_??_???.dat > ~/shome/ET2.dat
+
+cat Collection/2020/01_Jan/08/0200/20200108_02_{22..32}_??_???.dat > ~/shome/ET1.dat
+
+cat Collection/2020/01_Jan/08/0200/20200108_02_{59..59}_??_???.dat >~/shome/FT1.dat
+cat Collection/2020/01_Jan/08/0300/20200108_03_{00..10}_??_???.dat >>~/shome/FT1.dat
+
+cat Collection/2020/01_Jan/08/0400/20200108_04_{56..59}_??_???.dat >~/shome/FT2.dat
+cat Collection/2020/01_Jan/08/0500/20200108_05_{00..08}_??_???.dat >>~/shome/FT2.dat
+

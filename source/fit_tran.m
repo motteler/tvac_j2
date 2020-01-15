@@ -13,9 +13,9 @@
 %
 % IGM FIELDS
 %   ET1       - nchan x 9 x nobs IGM for cell empty, BB at T1
-%   ET2       - nchan x 9 x nobs IGM for cell empty, BB at T1
+%   ET2       - nchan x 9 x nobs IGM for cell empty, BB at T2
 %   FT1       - nchan x 9 x nobs IGM for cell full, BB at T1
-%   FT2       - nchan x 9 x nobs IGM for cell full, BB at T1
+%   FT2       - nchan x 9 x nobs IGM for cell full, BB at T2
 %
 % OPT FIELDS
 %   resmode   - resolution mode, for inst_params
@@ -41,9 +41,9 @@
 % DISCUSSION
 %   the structs igm and opt are passed on to cmp_tran
 %
-%   drms is actually rms(a*obs+b - calc), where a and b are found
-%   by regression independently for each FOV, and are returned in 
-%   the dmsc struct
+%   drms (from cmp_tran) is actually rms(a*obs+b - calc), where a
+%   and b are found by regression independently for each FOV, and
+%   are returned in the dmsc struct
 %
 %   fit_tran is derived from the old script version by that name.
 %   The search was moved to this function and the rest to wrapper
