@@ -1,0 +1,74 @@
+
+TVAC analysis home:
+  /asl/gravite/j2cris/readonly/extracted/hourly_archives/J2
+
+get test segment start stop times
+  cat SQLLOGS/2020/01_Jan/{12..13}/??00/*.cmd | grep ILS_Spectral_Cal | more
+
+browse tcr files for PFL, PFH, MN, Plateau number:
+  more SQLLOGS/2020/01_Jan/{12..13}/??00/*.tcr
+
+Jan 12-13 test legs, Collection/2020/01_Jan/{12..13}/????/*.dat
+
+packets are 8 seconds long, T1 > T2
+
+----- LW CO2 test (12-13 Jan) -----
+
+19:03:46
+19:16:49
+
+20:35:42
+20:49:05
+
+21:23:43
+21:36:43
+
+00:10:51
+00:24:30
+
+hh=~/cris/tvac_j2/01-12-pfh_s1_CO2
+cat Collection/2020/01_Jan/12/1900/20200112_19_{04..15}_??_???.dat > $hh/ET1.dat
+cat Collection/2020/01_Jan/12/2000/20200112_20_{36..48}_??_???.dat > $hh/ET2.dat
+cat Collection/2020/01_Jan/12/2100/20200112_21_{24..35}_??_???.dat > $hh/FT2.dat
+cat Collection/2020/01_Jan/13/0000/20200113_00_{11..23}_??_???.dat > $hh/FT1.dat
+
+----- MW CH4 test (13 Jan) -----
+
+07:00:05
+07:12:53
+
+08:24:29
+08:38:24
+
+09:01:05
+09:13:55
+
+10:41:26
+10:55:52
+
+hh=~/cris/tvac_j2/01-13-pfh_s1_CH4
+cat Collection/2020/01_Jan/13/0700/20200113_07_{01..11}_??_???.dat > $hh/ET1.dat
+cat Collection/2020/01_Jan/13/0800/20200113_08_{25..37}_??_???.dat > $hh/ET2.dat
+cat Collection/2020/01_Jan/13/0900/20200113_09_{02..12}_??_???.dat > $hh/FT2.dat
+cat Collection/2020/01_Jan/13/1000/20200113_10_{42..54}_??_???.dat > $hh/FT1.dat
+
+----- SW CO test (13 Jan) -----
+
+14:01:07
+14:14:16
+
+16:31:24
+16:44:33
+
+17:22:01
+17:34:45
+
+19:16:53
+19:30:08
+
+hh=~/cris/tvac_j2/01-13-pfh_s1_CO
+cat Collection/2020/01_Jan/13/1400/20200113_14_{02..13}_??_???.dat > $hh/ET2.dat
+cat Collection/2020/01_Jan/13/1600/20200113_16_{32..43}_??_???.dat > $hh/ET1.dat
+cat Collection/2020/01_Jan/13/1700/20200113_17_{23..33}_??_???.dat > $hh/FT1.dat
+cat Collection/2020/01_Jan/13/1900/20200113_19_{17..29}_??_???.dat > $hh/FT2.dat
+
