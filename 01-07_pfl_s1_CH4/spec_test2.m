@@ -15,6 +15,9 @@
 %
 % HM, 15 Jan 2014
 %
+% updated to get met laser from neon
+% set test dir, band, optional subsetting and gas below
+%
 
 % paths and libs
 addpath /asl/packages/ccast/source
@@ -22,21 +25,31 @@ addpath /asl/packages/ccast/motmsc/utils
 addpath /asl/packages/airs_decon/test
 addpath ../source
 
+% location for test data
+test_dir = '.';
+
+% get wlaser from eng and neon
+opt2 = struct;
+opt2.neonWL = 703.44765;
+load(fullfile(test_dir, 'FT2'));
+[wlaser, wtime] = metlaser(d1.packet.NeonCal, opt2);
+
+fprintf(1, 'eng neon=%.5f assigned neon=%.5f, wlaser=%.5f\n', ... 
+  d1.packet.NeonCal.NeonGasWavelength, opt2.neonWL, wlaser);
+
 % get instrument params
 band = 'MW';
-wlaser = 771.9574;  % from read_wlaser
 opt1 = struct; 
 opt1.user_res = 'hires';
-opt1.inst_res = 'hires4';
+opt1.inst_res = 'hires2';
 [inst, user] = inst_params(band, wlaser, opt1);
 
 % get the SA inverse matrix
-sfile = '../inst_data/SAinv_default_HR4_MW.mat';
+sfile = '../inst_data/SAinv_default_HR2_MW.mat';
 opt1.MW_sfile = sfile;
 Sinv = getSAinv(inst, opt1);
 
 % test data files
-test_dir = '.';
 mat_et2 = fullfile(test_dir, 'ET2');
 mat_et1 = fullfile(test_dir, 'ET1');
 mat_ft2 = fullfile(test_dir, 'FT2');
@@ -52,10 +65,10 @@ count_FT2 = igm2spec(read_igm(band, mat_ft2, sdir), inst);
 count_FT1 = igm2spec(read_igm(band, mat_ft1, sdir), inst);
 
 % option to take subsets
-% count_ET2 = count_ET2(:, :, 187:516);
-% count_ET1 = count_ET1(:, :, 18:347);
-% count_FT2 = count_FT2(:, :, 47:376);
-% count_FT1 = count_FT1(:, :, 18:347);
+count_ET2 = count_ET2(:, :,  30:340);  % ET2
+count_ET1 = count_ET1(:, :, 200:500);  % ET1
+count_FT2 = count_FT2(:, :,  30:340);  % FT2
+count_FT1 = count_FT1(:, :,  30:320);  % FT1
 
 % take means of the obs
 mean_ET2 = mean(count_ET2, 3);
@@ -96,6 +109,7 @@ xlabel('wavenumber')
 ylabel('transmittance')
 grid on; zoom on
 % saveas(gcf, 'spec_test2_all', 'png')
+% saveas(gcf, 'spec_test2_all', 'fig')
 
 figure(2); clf
 plot(freq2, tobs2, freq2, tcal2, 'k-.');
@@ -109,4 +123,5 @@ xlabel('wavenumber')
 ylabel('transmittance')
 grid on; zoom on
 % saveas(gcf, 'spec_test2_zoom', 'png')
+% saveas(gcf, 'spec_test2_zoom', 'fig')
 

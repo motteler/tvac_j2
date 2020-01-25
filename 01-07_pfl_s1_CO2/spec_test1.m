@@ -36,10 +36,10 @@ sdir = 0;
 igm = read_igm(band, mfile, sdir);
 
 % option to take subsets
-% igm = igm(:, :, 187:516);  % ET2
-% igm = igm(:, :, 18:347);   % ET1
-% igm = igm(:, :, 47:376);   % FT2
-% igm = igm(:, :, 18:347);   % FT1
+% igm = igm(:, :, 25:325);   % ET2
+% igm = igm(:, :, 40:360);   % ET1
+% igm = igm(:, :, 30:330);   % FT2
+% igm = igm(:, :, 40:340);   % FT1
 
 % translate to count spectra
 spec = igm2spec(igm, inst);
@@ -52,7 +52,7 @@ spec = abs(spec);
 
 % show all obs for one FOV
 figure(1);
-ifov = 5;
+ifov = 1;
 plot(inst.freq, squeeze(spec(:, ifov, :)), 'b');
 title(sprintf('test %s FOV %d all obs', tname, ifov))
 xlabel('wavenumber')

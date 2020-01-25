@@ -53,10 +53,10 @@ count_FT2 = igm2spec(read_igm(band, mat_ft2, sdir), inst);
 count_FT1 = igm2spec(read_igm(band, mat_ft1, sdir), inst);
 
 % option to take subsets
-% count_ET2 = count_ET2(:, :, 187:516);
-% count_ET1 = count_ET1(:, :, 18:347);
-% count_FT2 = count_FT2(:, :, 47:376);
-% count_FT1 = count_FT1(:, :, 18:347);
+count_ET2 = count_ET2(:, :, 25:325);   % ET2
+count_ET1 = count_ET1(:, :, 40:360);   % ET1
+count_FT2 = count_FT2(:, :, 30:330);   % FT2
+count_FT1 = count_FT1(:, :, 40:340);   % FT1
 
 % take means of the obs
 mean_ET2 = mean(count_ET2, 3);
@@ -75,7 +75,7 @@ end
 tobs = bandpass(inst.freq, tobs, user.v1, user.v2, user.vr);
 
 % get calc values
-abswt = 1;
+abswt = 1.1;
 d1 = load('run8_402t_CO2');
 [tcal, vcal] = kc2inst(inst, user, exp(-d1.absc * abswt), d1.fr);
 
@@ -96,7 +96,8 @@ grid; zoom on
 xlabel('wavenumber')
 ylabel('transmittance')
 grid on; zoom on
-saveas(gcf, 'spec_test2_all', 'png')
+
+% saveas(gcf, 'spec_test2_all', 'png')
 
 figure(2); clf
 plot(freq2, tobs2, freq2, tcal2, 'k-.');
@@ -109,4 +110,6 @@ grid; zoom on
 xlabel('wavenumber')
 ylabel('transmittance')
 grid on; zoom on
-saveas(gcf, 'spec_test2_zoom', 'png')
+
+% saveas(gcf, 'spec_test2_zoom', 'png')
+

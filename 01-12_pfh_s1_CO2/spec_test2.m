@@ -15,6 +15,9 @@
 %
 % HM, 15 Jan 2014
 %
+% updated to get met laser from neon
+% set test dir, band, optional subsetting and gas below
+%
 
 % paths and libs
 addpath /asl/packages/ccast/source
@@ -22,10 +25,20 @@ addpath /asl/packages/ccast/motmsc/utils
 addpath /asl/packages/airs_decon/test
 addpath ../source
 
+% location for test data
+test_dir = '.';
+
+% get wlaser from eng and neon
+opt2 = struct;
+opt2.neonWL = 703.44765;
+load(fullfile(test_dir, 'FT2'));
+[wlaser, wtime] = metlaser(d1.packet.NeonCal, opt2);
+
+fprintf(1, 'eng neon=%.5f assigned neon=%.5f, wlaser=%.5f\n', ... 
+  d1.packet.NeonCal.NeonGasWavelength, opt2.neonWL, wlaser);
+
 % get instrument params
 band = 'LW';
-% wlaser = 771.9574;  % from read_wlaser
-wlaser = 771.970351;  % from neonLW=703.44765
 opt1 = struct; 
 opt1.user_res = 'hires';
 opt1.inst_res = 'hires2';
@@ -37,7 +50,6 @@ opt1.LW_sfile = sfile;
 Sinv = getSAinv(inst, opt1);
 
 % test data files
-test_dir = '.';
 mat_et2 = fullfile(test_dir, 'ET2');
 mat_et1 = fullfile(test_dir, 'ET1');
 mat_ft2 = fullfile(test_dir, 'FT2');
@@ -53,10 +65,10 @@ count_FT2 = igm2spec(read_igm(band, mat_ft2, sdir), inst);
 count_FT1 = igm2spec(read_igm(band, mat_ft1, sdir), inst);
 
 % option to take subsets
-count_ET2 = count_ET2(:, :, 25:325);   % ET2
-count_ET1 = count_ET1(:, :, 40:360);   % ET1
-count_FT2 = count_FT2(:, :, 30:330);   % FT2
-count_FT1 = count_FT1(:, :, 40:340);   % FT1
+count_ET2 = count_ET2(:, :, 30:340);  % ET2
+count_ET1 = count_ET1(:, :, 60:360);  % ET1
+count_FT2 = count_FT2(:, :, 30:340);  % FT2
+count_FT1 = count_FT1(:, :, 30:340);  % FT1
 
 % take means of the obs
 mean_ET2 = mean(count_ET2, 3);
@@ -75,7 +87,7 @@ end
 tobs = bandpass(inst.freq, tobs, user.v1, user.v2, user.vr);
 
 % get calc values
-abswt = 1.1;
+abswt = 1.2;
 d1 = load('run8_402t_CO2');
 [tcal, vcal] = kc2inst(inst, user, exp(-d1.absc * abswt), d1.fr);
 
@@ -96,7 +108,6 @@ grid; zoom on
 xlabel('wavenumber')
 ylabel('transmittance')
 grid on; zoom on
-
 % saveas(gcf, 'spec_test2_all', 'png')
 
 figure(2); clf
@@ -110,6 +121,5 @@ grid; zoom on
 xlabel('wavenumber')
 ylabel('transmittance')
 grid on; zoom on
-
 % saveas(gcf, 'spec_test2_zoom', 'png')
 

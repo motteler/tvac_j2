@@ -36,7 +36,7 @@ wgrid = -0.02 : 0.0002 : 0.03;
 waxis = wlaser + wgrid;
 
 % run name for plots
-pname = 'CH4, 13 Jan 2020 PFH side 1';
+pname = 'CO2, 19 Jan 2020 PFH side 2';
 
 %---------------------
 % params for fit_tran

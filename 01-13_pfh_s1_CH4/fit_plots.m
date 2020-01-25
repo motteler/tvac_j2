@@ -61,8 +61,8 @@ title('obs minus calc corner FOVs')
 legend(fname{ix}, 'location', 'southeast')
 grid on; zoom on
 
-% saveas(gcf, 'CH4_breakout_2', 'png')
 % saveas(gcf, 'CH4_breakout_2', 'fig')
+% saveas(gcf, 'CH4_breakout_2', 'png')
 
 return
 

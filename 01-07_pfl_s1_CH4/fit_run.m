@@ -1,6 +1,9 @@
 %
 % fit_run -- set up params, call fit_tran, plot results
 %
+% updated to get met laser from neon
+% set test dir, band, optional subsetting and gas below
+%
 
 %----------------
 % paths and libs
@@ -15,17 +18,25 @@ addpath ../source
 % basic run params
 %------------------
 
-band = 'MW';          % set the band
-% wlaser = 771.9574;    % from eng neon
-wlaser = 771.970351;  % from neonLW=703.44765
-sdir = 0;             % sweep direction
+band = 'MW';      % set the band
+test_dir = '.';   % location of test data
+sdir = 0;         % sweep direction
 
-% search grid
-wgrid = -0.02 : 0.0005 : 0.03; 
+% get wlaser from eng and neon
+opt2 = struct;
+opt2.neonWL = 703.44765;
+load(fullfile(test_dir, 'FT2'));
+[wlaser, wtime] = metlaser(d1.packet.NeonCal, opt2);
+
+fprintf(1, 'eng neon=%.5f assigned neon=%.5f, wlaser=%.5f\n', ... 
+  d1.packet.NeonCal.NeonGasWavelength, opt2.neonWL, wlaser);
+
+% set the search grid
+wgrid = -0.02 : 0.0002 : 0.03; 
 waxis = wlaser + wgrid;
 
 % run name for plots
-pname = 'CH4, 7 Jan 2020 PFL side 1';
+pname = 'CH4, 7 Jan 2020 PFH side 1';
 
 %---------------------
 % params for fit_tran
@@ -33,21 +44,20 @@ pname = 'CH4, 7 Jan 2020 PFL side 1';
 
 opt = struct; 
 opt.user_res = 'hires';
-opt.inst_res = 'hires4';
-opt.MW_sfile = '../inst_data/SAinv_default_HR4_MW.mat';
-% opt.afile = 'run8_40t_CH4'; % tabulated absorptions
-% opt.abswt = 0.9;            % absorption scale factor
-opt.afile = 'run8_44p64_torr_14p85_C.mat';   % new CH4 run
-opt.abswt = 12.69;            % absorption scale factor
+opt.inst_res = 'hires2';
+opt.MW_sfile = '../inst_data/SAinv_default_HR2_MW.mat';
 opt.qv1   = 1220;           % fitting interval start
 opt.qv2   = 1380;           % fitting interval end
+
+% gas file and weight
+opt.afile = 'run8_44p64_torr_14p85_C.mat';
+opt.abswt = 12.69;
 
 %--------------------
 % get interferograms
 %--------------------
 
 % test data files
-test_dir = '.';
 mat_et2 = fullfile(test_dir, 'ET2');
 mat_et1 = fullfile(test_dir, 'ET1');
 mat_ft2 = fullfile(test_dir, 'FT2');
@@ -61,10 +71,10 @@ igm.FT2 = read_igm(band, mat_ft2, sdir);
 igm.FT1 = read_igm(band, mat_ft1, sdir);
 
 % option to take subsets
-% igm.ET2 = igm.ET2(:, :, 167:496); 
-% igm.ET1 = igm.ET1(:, :, 18:347);
-% igm.FT2 = igm.FT2(:, :, 18:347);
-% igm.FT1 = igm.FT1(:, :, 18:347);
+igm.ET2 = igm.ET2(:, :,  30:340);  % ET2
+igm.ET1 = igm.ET1(:, :, 200:500);  % ET1
+igm.FT2 = igm.FT2(:, :,  30:340);  % FT2
+igm.FT1 = igm.FT1(:, :,  30:320);  % FT1
 
 %---------------
 % call fit_tran
@@ -93,7 +103,6 @@ qv2 = opt.qv2;
 
 figure(1); clf;
 set(gcf, 'DefaultAxesColorOrder', fovcolors);
-
 plot(waxis, drms, 'linewidth', 2)
 axis([771.95, 772.0, 0.002, 0.018])
 xlabel('wavelength, nm')
@@ -102,8 +111,8 @@ title(sprintf('%s, residual as a function of wlaser', pname));
 legend(fovnames, 'location', 'north')
 grid on; zoom on
 
-% saveas(gcf, 'CH4_wlaser_fit', 'png')
 % saveas(gcf, 'CH4_wlaser_fit', 'fig')
+% saveas(gcf, 'CH4_wlaser_fit', 'png')
 
 % ------------------
 % plot obs and calc
@@ -120,8 +129,8 @@ title(sprintf('%s, obs and calc transmittance', pname));
 legend(fovnames, 'location', 'southwest')
 grid on; zoom on
 
-% saveas(gcf, 'CH4_obs_and_calc', 'png')
 % saveas(gcf, 'CH4_obs_and_calc', 'fig')
+% saveas(gcf, 'CH4_obs_and_calc', 'png')
 
 % --------------------
 % plot obs minus calc

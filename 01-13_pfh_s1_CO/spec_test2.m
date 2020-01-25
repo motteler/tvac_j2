@@ -108,7 +108,7 @@ grid; zoom on
 xlabel('wavenumber')
 ylabel('transmittance')
 grid on; zoom on
-% saveas(gcf, 'spec_test2_all', 'png')
+  saveas(gcf, 'spec_test2_all', 'png')
 
 figure(2); clf
 plot(freq2, tobs2, freq2, tcal2, 'k-.');
@@ -121,5 +121,5 @@ grid; zoom on
 xlabel('wavenumber')
 ylabel('transmittance')
 grid on; zoom on
-% saveas(gcf, 'spec_test2_zoom', 'png')
+  saveas(gcf, 'spec_test2_zoom', 'png')
 

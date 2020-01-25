@@ -1,65 +1,43 @@
 
-CrIS FM2 tests
----------------
+CrIS 2020 J2 TVAC tests
+------------------------
 
-a subset of the 2014 CrIS TVAC tests updated to work with newer
-focal plan models and recent versions of ccast
+Updated TVAC tests for the 2020 CrIS J2 TVAC gas cell tests.  Note
+there may be some useful tests in tvac_2014 or tvac_review that are
+not in this repo yet.
 
 Directories
 ------------
-
-doc             - notes and reports
-source          - common source code
-inst_data       - data shared across tests
-tvac_mm-dd-gas  - fall 2014 TVAC tests
+doc            - notes and reports
+source         - common source code
+inst_data      - instrument data, mainly from ccast
+mm-dd_*_s?_*   - tests by date, segment, side, and gas
+harvest_mm-dd  - harvest notes and scripts, by date
 
 Test Scripts
 -------------
+fit_run   - set up test params, call fit_tran, plot results
 
-fit_run - set up params, call fit_tran, plot results
-
-fit_plots - more plots, followup to fit_run
+fit_plots - FOV breakouts and other plots, followup to fit_run
 
 fit_parts - run fit_tran on a set of obs partitions 
 
 spec_test1 - quick look at gas cell count spectra with data from
     ccast/MITreader380b/read_cris_ccsds and ccast/source routines
-    inst_params and igm2spec.
+    inst_params and igm2spec
 
-spec_test2 - compare observed and calculated gas cell transmittance
-    with old-format obs, but using ccast routines and kc2cris from
-    the airs_decon package
-
-spec_test3 -- look at spectral signal to noise ratio
+spec_test2 - a basic comparison of observed and calculated gas cell
+    transmittance, without any fitting, using ccast libs and kc2cris
+    from the airs_decon package
 
 Functions
 ----------
-
-cmp_tran -- compare observed and calculated transmittances.  
-    a total rewrite of the old FM2008/cmp_tran6, mainly derived
-    from the demo script spec_test2.  There is no params file or
-    defaults--all params are passed in or by inst_params. 
-
-fit_tran -- find wlaser deltas to match obs and calc.  
-    derived from the old script version of fit_tran.  The search
-    was moved to this function, and the rest to a wrapper script
-    to fit_run
-
-fp_default -- build default SRF matrix for new gas cell tests
-
-fp_exelis -- build an SRF matrix from recent Exelis test data
-
-read_igm -- simple wrapper to load IGM data from the MIT reader
-
-fit_info -- print fit_tran residuals and weights
-
-fovcolors -- 9 distinct colors for FOV plots
-
-fovnames --  FOV names for plot legend
-
-
-Laser Tests
-------------
-
-Tests and code from FM2013 needs to be merged into this repo
+cmp_tran  - compare observed and calculated transmittances
+fit_tran  - find wlaser deltas to match obs and calc
+dat2mat   - call read_cris_ccsds on harvested data
+read_ccs  - read and tabulate selected CCS fields
+read_igm  - simple wrapper to read IGMs with the MIT reader
+fit_info  - print fit_tran residuals and weights
+fovcolors - 9 distinct colors for FOV plots
+fovnames  -  FOV names for plot legend
 

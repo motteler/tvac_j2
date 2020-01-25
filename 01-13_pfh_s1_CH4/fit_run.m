@@ -111,8 +111,8 @@ title(sprintf('%s, residual as a function of wlaser', pname));
 legend(fovnames, 'location', 'north')
 grid on; zoom on
 
-% saveas(gcf, 'CH4_wlaser_fit', 'png')
 % saveas(gcf, 'CH4_wlaser_fit', 'fig')
+% saveas(gcf, 'CH4_wlaser_fit', 'png')
 
 % ------------------
 % plot obs and calc
@@ -129,8 +129,8 @@ title(sprintf('%s, obs and calc transmittance', pname));
 legend(fovnames, 'location', 'southwest')
 grid on; zoom on
 
-% saveas(gcf, 'CH4_obs_and_calc', 'png')
 % saveas(gcf, 'CH4_obs_and_calc', 'fig')
+% saveas(gcf, 'CH4_obs_and_calc', 'png')
 
 % --------------------
 % plot obs minus calc

@@ -21,7 +21,7 @@ wlaser = 771.970351;  % from neonLW=703.44765
 sdir = 0;             % sweep direction
 
 % search grid
-wgrid = -0.02 : 0.0005 : 0.03; 
+wgrid = 2.25 : 0.0001 : 2.27 ;
 waxis = wlaser + wgrid;
 
 % run name for plots
@@ -60,10 +60,10 @@ igm.FT2 = read_igm(band, mat_ft2, sdir);
 igm.FT1 = read_igm(band, mat_ft1, sdir);
 
 % option to take subsets
-% igm.ET2 = igm.ET2(:, :, 167:496); 
-% igm.ET1 = igm.ET1(:, :, 18:347);
-% igm.FT2 = igm.FT2(:, :, 18:347);
-% igm.FT1 = igm.FT1(:, :, 18:347);
+igm.ET2 = igm.ET2(:, :, 25:325);   % ET2
+igm.ET1 = igm.ET1(:, :, 40:360);   % ET1
+igm.FT2 = igm.FT2(:, :, 30:330);   % FT2
+igm.FT1 = igm.FT1(:, :, 40:340);   % FT1
 
 %---------------
 % call fit_tran
@@ -94,15 +94,15 @@ figure(1); clf;
 set(gcf, 'DefaultAxesColorOrder', fovcolors);
 
 plot(waxis, drms, 'linewidth', 2)
-axis([771.95, 772.0, 0.002, 0.018])
+% axis([771.95, 772.0, 0.002, 0.018])
 xlabel('wavelength, nm')
 ylabel('rms fitting error')
 title(sprintf('%s, residual as a function of wlaser', pname));
 legend(fovnames, 'location', 'north')
 grid on; zoom on
 
-saveas(gcf, 'CO2_wlaser_fit', 'png')
-saveas(gcf, 'CO2_wlaser_fit', 'fig')
+% saveas(gcf, 'CO2_wlaser_fit', 'png')
+% saveas(gcf, 'CO2_wlaser_fit', 'fig')
 
 % ------------------
 % plot obs and calc
@@ -119,8 +119,8 @@ title(sprintf('%s, obs and calc transmittance', pname));
 legend(fovnames, 'location', 'southwest')
 grid on; zoom on
 
-saveas(gcf, 'CO2_obs_and_calc', 'png')
-saveas(gcf, 'CO2_obs_and_calc', 'fig')
+% saveas(gcf, 'CO2_obs_and_calc', 'png')
+% saveas(gcf, 'CO2_obs_and_calc', 'fig')
 
 % --------------------
 % plot obs minus calc
