@@ -1,4 +1,6 @@
 
+12-13 Jan 2020 CrIS TVAC PFH side 1 harvest notes
+
 TVAC analysis home:
   /asl/gravite/j2cris/readonly/extracted/hourly_archives/J2
 
