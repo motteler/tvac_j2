@@ -11,23 +11,33 @@
 %
 % HM, 15 Jan 2014
 %
+% updated to get met laser from neon
+% set test file, band, and optional subsetting below
+%
 
 % paths and libs
 addpath /asl/packages/ccast/source
 addpath /asl/packages/ccast/motmsc/utils
 addpath ../source
 
+% select a test data file
+mfile = './FT2.mat';
+load(mfile);
+
+% get wlaser from eng and neon
+opt2 = struct;
+opt2.neonWL = 703.44765;
+[wlaser, wtime] = metlaser(d1.packet.NeonCal, opt2);
+
+fprintf(1, 'eng neon=%.5f assigned neon=%.5f, wlaser=%.5f\n', ... 
+  d1.packet.NeonCal.NeonGasWavelength, opt2.neonWL, wlaser);
+
 % get instrument params
 band = 'SW';
-wlaser = 771.9574;  % from read_wlaser
 opt1 = struct; 
 opt1.user_res = 'hires';
 opt1.inst_res = 'hires2';
 [inst, user] = inst_params(band, wlaser, opt1);
-
-% choose a test data file
-mfile = './FT1.mat';
-load(mfile);
 
 % choose a sweep direction
 sdir = 0;
@@ -36,10 +46,10 @@ sdir = 0;
 igm = read_igm(band, mfile, sdir);
 
 % option to take subsets
-% igm = igm(:, :, 187:516);  % ET2
-% igm = igm(:, :, 18:347);   % ET1
-% igm = igm(:, :, 47:376);   % FT2
-% igm = igm(:, :, 18:347);   % FT1
+% igm = igm(:, :, 30:340);  % ET2
+% igm = igm(:, :, 30:340);  % ET1
+  igm = igm(:, :, 30:340);  % FT2
+% igm = igm(:, :, 30:340);  % FT1
 
 % translate to count spectra
 spec = igm2spec(igm, inst);
@@ -48,7 +58,7 @@ spec = igm2spec(igm, inst);
 spec = abs(spec);
 
 % get test name for plots
-[xx, tname] = fileparts(mfile);
+[~, tname] = fileparts(mfile);
 
 % show all obs for one FOV
 figure(1);

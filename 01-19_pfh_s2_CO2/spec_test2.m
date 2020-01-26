@@ -38,15 +38,15 @@ fprintf(1, 'eng neon=%.5f assigned neon=%.5f, wlaser=%.5f\n', ...
   d1.packet.NeonCal.NeonGasWavelength, opt2.neonWL, wlaser);
 
 % get instrument params
-band = 'MW';
+band = 'LW';
 opt1 = struct; 
 opt1.user_res = 'hires';
 opt1.inst_res = 'hires2';
 [inst, user] = inst_params(band, wlaser, opt1);
 
 % get the SA inverse matrix
-sfile = '../inst_data/SAinv_default_HR2_MW.mat';
-opt1.MW_sfile = sfile;
+sfile = '../inst_data/SAinv_default_HR2_LW.mat';
+opt1.LW_sfile = sfile;
 Sinv = getSAinv(inst, opt1);
 
 % test data files
@@ -68,7 +68,7 @@ count_FT1 = igm2spec(read_igm(band, mat_ft1, sdir), inst);
 count_ET2 = count_ET2(:, :, 30:340);  % ET2
 count_ET1 = count_ET1(:, :, 30:340);  % ET1
 count_FT2 = count_FT2(:, :, 30:340);  % FT2
-count_FT1 = count_FT1(:, :, 30:340);  % FT1
+count_FT1 = count_FT1(:, :, 20:320);  % FT1
 
 % take means of the obs
 mean_ET2 = mean(count_ET2, 3);
@@ -87,8 +87,8 @@ end
 tobs = bandpass(inst.freq, tobs, user.v1, user.v2, user.vr);
 
 % get calc values
-abswt = 12.69;
-d1 = load('run8_44p64_torr_14p85_C');
+abswt = 1.2;
+d1 = load('run8_402t_CO2');
 [tcal, vcal] = kc2inst(inst, user, exp(-d1.absc * abswt), d1.fr);
 
 % check frequency grids
@@ -112,7 +112,7 @@ grid on; zoom on
 
 figure(2); clf
 plot(freq2, tobs2, freq2, tcal2, 'k-.');
-axis([1260,1270,0.6,1.1])
+axis([720,780,0.8,1.1])
 title('observed and calculated transmittance detail')
 % plot(freq2, tobs2)
 % title('observed transmittance')

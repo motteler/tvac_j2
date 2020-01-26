@@ -18,7 +18,7 @@ addpath ../source
 % basic run params
 %------------------
 
-band = 'MW';      % set the band
+band = 'LW';      % set the band
 test_dir = '.';   % location of test data
 sdir = 0;         % sweep direction
 
@@ -45,13 +45,14 @@ pname = 'CO2, 19 Jan 2020 PFH side 2';
 opt = struct; 
 opt.user_res = 'hires';
 opt.inst_res = 'hires2';
-opt.MW_sfile = '../inst_data/SAinv_default_HR2_MW.mat';
-opt.qv1   = 1220;           % fitting interval start
-opt.qv2   = 1380;           % fitting interval end
+opt.LW_sfile = '../inst_data/SAinv_default_HR2_LW.mat';
+% opt.qv1 = 650; opt.qv2 = 760;  % full fitting interval 
+  opt.qv1 = 672; opt.qv2 = 712;  % easier CO2 subinterval
+% opt.qv1 = 676; opt.qv2 = 712;  % Larrabee new tests
 
 % gas file and weight
-opt.afile = 'run8_44p64_torr_14p85_C.mat';
-opt.abswt = 12.69;
+opt.afile = 'run8_402t_CO2'; % tabulated absorptions
+opt.abswt = 1.2;            % absorption scale factor
 
 %--------------------
 % get interferograms
@@ -104,15 +105,15 @@ qv2 = opt.qv2;
 figure(1); clf;
 set(gcf, 'DefaultAxesColorOrder', fovcolors);
 plot(waxis, drms, 'linewidth', 2)
-% axis([771.95, 772.0, 0.002, 0.018])
+axis([775.19, 775.24, 0.002, 0.016])
 xlabel('wavelength, nm')
 ylabel('rms fitting error')
 title(sprintf('%s, residual as a function of wlaser', pname));
 legend(fovnames, 'location', 'north')
 grid on; zoom on
 
-% saveas(gcf, 'CH4_wlaser_fit', 'png')
-% saveas(gcf, 'CH4_wlaser_fit', 'fig')
+% saveas(gcf, 'CO2_wlaser_fit', 'fig')
+% saveas(gcf, 'CO2_wlaser_fit', 'png')
 
 % ------------------
 % plot obs and calc
@@ -129,8 +130,8 @@ title(sprintf('%s, obs and calc transmittance', pname));
 legend(fovnames, 'location', 'southwest')
 grid on; zoom on
 
-% saveas(gcf, 'CH4_obs_and_calc', 'png')
-% saveas(gcf, 'CH4_obs_and_calc', 'fig')
+% saveas(gcf, 'CO2_obs_and_calc', 'fig')
+% saveas(gcf, 'CO2_obs_and_calc', 'png')
 
 % --------------------
 % plot obs minus calc

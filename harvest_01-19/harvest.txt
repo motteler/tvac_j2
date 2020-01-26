@@ -1,4 +1,6 @@
 
+19 Jan 2020 CrIS TVAC PFH side 2 harvest notes
+
 TVAC analysis home:
   /asl/gravite/j2cris/readonly/extracted/hourly_archives/J2
 
@@ -12,7 +14,7 @@ Jan 19 test legs, Collection/2020/01_Jan/{19..19}/????/*.dat
 
 packets are 8 seconds long, T1 > T2
 
------ LW CO2 test (19 Jan) -----
+----- CO2 LW PFH side 2, 19 Jan -----
 
 06:20:37
 06:54:28
@@ -26,9 +28,20 @@ packets are 8 seconds long, T1 > T2
 12:35:49
 12:56:26
 
-hh=~/cris/tvac_j2/01-19-pfh_s2_CO2
+The whole works:
+
+hh=~/cris/tvac_j2/01-19_pfh_s2_CO2
 cat Collection/2020/01_Jan/19/0600/20200119_06_{21..53}_??_???.dat > $hh/ET1.dat
 cat Collection/2020/01_Jan/19/0900/20200119_09_{10..21}_??_???.dat > $hh/ET2.dat
 cat Collection/2020/01_Jan/19/1000/20200119_10_{10..20}_??_???.dat > $hh/FT2.dat
 cat Collection/2020/01_Jan/19/1200/20200119_12_{36..55}_??_???.dat > $hh/FT1.dat
+
+A more practical subset, with c. 10 min legs
+
+hh=~/cris/tvac_j2/01-19_pfh_s2_CO2
+cat Collection/2020/01_Jan/19/0600/20200119_06_{22..32}_??_???.dat > $hh/ET1.dat
+cat Collection/2020/01_Jan/19/0900/20200119_09_{10..21}_??_???.dat > $hh/ET2.dat
+cat Collection/2020/01_Jan/19/1000/20200119_10_{10..20}_??_???.dat > $hh/FT2.dat
+cat Collection/2020/01_Jan/19/1200/20200119_12_{40..50}_??_???.dat > $hh/FT1.dat
+
 

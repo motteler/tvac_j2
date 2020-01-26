@@ -45,3 +45,6 @@
 # temp files
 *.tmp
 
+# old files
+zold
+

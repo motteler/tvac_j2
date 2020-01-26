@@ -48,8 +48,8 @@ igm = read_igm(band, mfile, sdir);
 % option to take subsets
 % igm = igm(:, :, 30:340);  % ET2
 % igm = igm(:, :, 30:340);  % ET1
-% igm = igm(:, :, 30:340);  % FT2
-% igm = igm(:, :, 30:340);  % FT1
+  igm = igm(:, :, 30:340);  % FT2
+% igm = igm(:, :, 20:320);  % FT1
 
 % translate to count spectra
 spec = igm2spec(igm, inst);

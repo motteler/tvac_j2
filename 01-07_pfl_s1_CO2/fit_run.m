@@ -1,6 +1,9 @@
 %
 % fit_run -- set up params, call fit_tran, plot results
 %
+% updated to get met laser from neon
+% set test dir, band, optional subsetting and gas below
+%
 
 %----------------
 % paths and libs
@@ -15,13 +18,21 @@ addpath ../source
 % basic run params
 %------------------
 
-band = 'LW';          % set the band
-% wlaser = 771.9574;    % from eng neon
-wlaser = 771.970351;  % from neonLW=703.44765
-sdir = 0;             % sweep direction
+band = 'LW';      % set the band
+test_dir = '.';   % location of test data
+sdir = 0;         % sweep direction
 
-% search grid
-wgrid = 2.25 : 0.0001 : 2.27 ;
+% get wlaser from eng and neon
+opt2 = struct;
+opt2.neonWL = 703.44765;
+load(fullfile(test_dir, 'FT2'));
+[wlaser, wtime] = metlaser(d1.packet.NeonCal, opt2);
+
+fprintf(1, 'eng neon=%.5f assigned neon=%.5f, wlaser=%.5f\n', ... 
+  d1.packet.NeonCal.NeonGasWavelength, opt2.neonWL, wlaser);
+
+% set the search grid
+wgrid = -0.02 : 0.0002 : 0.03; 
 waxis = wlaser + wgrid;
 
 % run name for plots
@@ -35,18 +46,19 @@ opt = struct;
 opt.user_res = 'hires';
 opt.inst_res = 'hires2';
 opt.LW_sfile = '../inst_data/SAinv_default_HR2_LW.mat';
-opt.afile = 'run8_402t_CO2'; % tabulated absorptions
-opt.abswt = 1.1;            % absorption scale factor
 % opt.qv1 = 650; opt.qv2 = 760;  % full fitting interval 
   opt.qv1 = 672; opt.qv2 = 712;  % easier CO2 subinterval
 % opt.qv1 = 676; opt.qv2 = 712;  % Larrabee new tests
+
+% gas file and weight
+opt.afile = 'run8_402t_CO2'; % tabulated absorptions
+opt.abswt = 1.2;            % absorption scale factor
 
 %--------------------
 % get interferograms
 %--------------------
 
 % test data files
-test_dir = '.';
 mat_et2 = fullfile(test_dir, 'ET2');
 mat_et1 = fullfile(test_dir, 'ET1');
 mat_ft2 = fullfile(test_dir, 'FT2');
@@ -60,10 +72,10 @@ igm.FT2 = read_igm(band, mat_ft2, sdir);
 igm.FT1 = read_igm(band, mat_ft1, sdir);
 
 % option to take subsets
-igm.ET2 = igm.ET2(:, :, 25:325);   % ET2
-igm.ET1 = igm.ET1(:, :, 40:360);   % ET1
-igm.FT2 = igm.FT2(:, :, 30:330);   % FT2
-igm.FT1 = igm.FT1(:, :, 40:340);   % FT1
+igm.ET2 = igm.ET2(:, :, 40:340);  % ET2
+igm.ET1 = igm.ET1(:, :, 40:340);  % ET1
+igm.FT2 = igm.FT2(:, :, 40:340);  % FT2
+igm.FT1 = igm.FT1(:, :, 40:340);  % FT1
 
 %---------------
 % call fit_tran
@@ -92,7 +104,6 @@ qv2 = opt.qv2;
 
 figure(1); clf;
 set(gcf, 'DefaultAxesColorOrder', fovcolors);
-
 plot(waxis, drms, 'linewidth', 2)
 % axis([771.95, 772.0, 0.002, 0.018])
 xlabel('wavelength, nm')
@@ -101,8 +112,8 @@ title(sprintf('%s, residual as a function of wlaser', pname));
 legend(fovnames, 'location', 'north')
 grid on; zoom on
 
-% saveas(gcf, 'CO2_wlaser_fit', 'png')
 % saveas(gcf, 'CO2_wlaser_fit', 'fig')
+% saveas(gcf, 'CO2_wlaser_fit', 'png')
 
 % ------------------
 % plot obs and calc
@@ -119,8 +130,8 @@ title(sprintf('%s, obs and calc transmittance', pname));
 legend(fovnames, 'location', 'southwest')
 grid on; zoom on
 
-% saveas(gcf, 'CO2_obs_and_calc', 'png')
 % saveas(gcf, 'CO2_obs_and_calc', 'fig')
+% saveas(gcf, 'CO2_obs_and_calc', 'png')
 
 % --------------------
 % plot obs minus calc
@@ -136,4 +147,5 @@ ylabel('transmittance difference')
 title(sprintf('%s, obs minus calc', pname));
 legend(fovnames, 'location', 'southeast')
 grid on; zoom on
+
 
