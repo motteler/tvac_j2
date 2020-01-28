@@ -32,7 +32,7 @@ fprintf(1, 'eng neon=%.5f assigned neon=%.5f, wlaser=%.5f\n', ...
   d1.packet.NeonCal.NeonGasWavelength, opt2.neonWL, wlaser);
 
 % set the search grid
-wgrid = -0.02 : 0.0002 : 0.03; 
+wgrid = -0.01 : 0.0001 : 0.02; 
 waxis = wlaser + wgrid;
 
 % run name for plots
@@ -50,7 +50,7 @@ opt.qv1   = 1220;           % fitting interval start
 opt.qv2   = 1380;           % fitting interval end
 
 % gas file and weight
-opt.afile = 'run8_44p64_torr_14p85_C.mat';
+opt.afile = 'umbc_CH4_48p70_Torr_17p17_C';
 opt.abswt = 12.69;
 
 %--------------------
@@ -111,8 +111,8 @@ title(sprintf('%s, residual as a function of wlaser', pname));
 legend(fovnames, 'location', 'north')
 grid on; zoom on
 
-% saveas(gcf, 'CH4_wlaser_fit', 'fig')
-% saveas(gcf, 'CH4_wlaser_fit', 'png')
+saveas(gcf, 'CH4_wlaser_fit', 'fig')
+saveas(gcf, 'CH4_wlaser_fit', 'png')
 
 % ------------------
 % plot obs and calc
@@ -129,8 +129,8 @@ title(sprintf('%s, obs and calc transmittance', pname));
 legend(fovnames, 'location', 'southwest')
 grid on; zoom on
 
-% saveas(gcf, 'CH4_obs_and_calc', 'fig')
-% saveas(gcf, 'CH4_obs_and_calc', 'png')
+saveas(gcf, 'CH4_obs_and_calc', 'fig')
+saveas(gcf, 'CH4_obs_and_calc', 'png')
 
 % --------------------
 % plot obs minus calc

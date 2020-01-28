@@ -32,7 +32,7 @@ fprintf(1, 'eng neon=%.5f assigned neon=%.5f, wlaser=%.5f\n', ...
   d1.packet.NeonCal.NeonGasWavelength, opt2.neonWL, wlaser);
 
 % set the search grid
-wgrid = -0.02 : 0.0002 : 0.03; 
+wgrid = -0.01 : 0.0001 : 0.02; 
 waxis = wlaser + wgrid;
 
 % run name for plots
@@ -50,7 +50,7 @@ opt.qv1   = 1220;           % fitting interval start
 opt.qv2   = 1380;           % fitting interval end
 
 % gas file and weight
-opt.afile = 'run8_44p64_torr_14p85_C.mat';
+opt.afile = 'umbc_CH4_44p64_Torr_14p90_C';
 opt.abswt = 12.69;
 
 %--------------------
@@ -104,7 +104,7 @@ qv2 = opt.qv2;
 figure(1); clf;
 set(gcf, 'DefaultAxesColorOrder', fovcolors);
 plot(waxis, drms, 'linewidth', 2)
-axis([771.95, 772.0, 0.002, 0.018])
+axis([771.96, 771.99, 0.002, 0.012])
 xlabel('wavelength, nm')
 ylabel('rms fitting error')
 title(sprintf('%s, residual as a function of wlaser', pname));

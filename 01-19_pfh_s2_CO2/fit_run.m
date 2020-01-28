@@ -32,7 +32,7 @@ fprintf(1, 'eng neon=%.5f assigned neon=%.5f, wlaser=%.5f\n', ...
   d1.packet.NeonCal.NeonGasWavelength, opt2.neonWL, wlaser);
 
 % set the search grid
-wgrid = -0.02 : 0.0002 : 0.03; 
+wgrid = -0.01 : 0.0001 : 0.02; 
 waxis = wlaser + wgrid;
 
 % run name for plots
@@ -51,8 +51,8 @@ opt.LW_sfile = '../inst_data/SAinv_default_HR2_LW.mat';
 % opt.qv1 = 676; opt.qv2 = 712;  % Larrabee new tests
 
 % gas file and weight
-opt.afile = 'run8_402t_CO2'; % tabulated absorptions
-opt.abswt = 1.2;            % absorption scale factor
+opt.abswt = 12.69;
+opt.afile = 'umbc_CO2_49p75_Torr_17p27_C';
 
 %--------------------
 % get interferograms
@@ -105,15 +105,15 @@ qv2 = opt.qv2;
 figure(1); clf;
 set(gcf, 'DefaultAxesColorOrder', fovcolors);
 plot(waxis, drms, 'linewidth', 2)
-axis([775.19, 775.24, 0.002, 0.016])
+axis([775.197, 775.228, 0.001, 0.012])
 xlabel('wavelength, nm')
 ylabel('rms fitting error')
 title(sprintf('%s, residual as a function of wlaser', pname));
 legend(fovnames, 'location', 'north')
 grid on; zoom on
 
-% saveas(gcf, 'CO2_wlaser_fit', 'fig')
-% saveas(gcf, 'CO2_wlaser_fit', 'png')
+saveas(gcf, 'CO2_wlaser_fit', 'fig')
+saveas(gcf, 'CO2_wlaser_fit', 'png')
 
 % ------------------
 % plot obs and calc
@@ -121,17 +121,16 @@ grid on; zoom on
 
 figure(2); clf
 set(gcf, 'DefaultAxesColorOrder', fovcolors);
-
 plot(vobs4, tobs5, vobs4, tcal4, 'k-.');
-axis([qv1, qv2, 0, 1.1])
+axis([qv1, qv2, 0.2, 1.1])
 xlabel('wavenumber')
 ylabel('transmittance')
 title(sprintf('%s, obs and calc transmittance', pname));
-legend(fovnames, 'location', 'southwest')
+legend(fovnames, 'location', 'southeast')
 grid on; zoom on
 
-% saveas(gcf, 'CO2_obs_and_calc', 'fig')
-% saveas(gcf, 'CO2_obs_and_calc', 'png')
+saveas(gcf, 'CO2_obs_and_calc', 'fig')
+saveas(gcf, 'CO2_obs_and_calc', 'png')
 
 % --------------------
 % plot obs minus calc

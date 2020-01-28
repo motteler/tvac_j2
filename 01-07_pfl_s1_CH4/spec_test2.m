@@ -88,7 +88,7 @@ tobs = bandpass(inst.freq, tobs, user.v1, user.v2, user.vr);
 
 % get calc values
 abswt = 12.69;
-d1 = load('run8_44p64_torr_14p85_C');
+d1 = load('umbc_CH4_44p64_Torr_14p90_C');
 [tcal, vcal] = kc2inst(inst, user, exp(-d1.absc * abswt), d1.fr);
 
 % check frequency grids
@@ -108,6 +108,7 @@ grid; zoom on
 xlabel('wavenumber')
 ylabel('transmittance')
 grid on; zoom on
+
 % saveas(gcf, 'spec_test2_all', 'png')
 % saveas(gcf, 'spec_test2_all', 'fig')
 
@@ -122,6 +123,7 @@ grid; zoom on
 xlabel('wavenumber')
 ylabel('transmittance')
 grid on; zoom on
+
 % saveas(gcf, 'spec_test2_zoom', 'png')
 % saveas(gcf, 'spec_test2_zoom', 'fig')
 

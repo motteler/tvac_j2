@@ -32,13 +32,13 @@ fprintf(1, 'eng neon=%.5f assigned neon=%.5f, wlaser=%.5f\n', ...
   d1.packet.NeonCal.NeonGasWavelength, opt2.neonWL, wlaser);
 
 % set the search grid
-wgrid = -0.02 : 0.0002 : 0.03; 
+wgrid = -0.01 : 0.0001 : 0.02; 
 waxis = wlaser + wgrid;
 
 % run name for plots
 pname = 'C0, 13 Jan 2020 PFH side 1';
 
-%---------------------
+ %---------------------
 % params for fit_tran
 %---------------------
 
@@ -50,8 +50,8 @@ opt.qv1   = 2160;           % fitting interval start
 opt.qv2   = 2240;           % fitting interval end
 
 % gas file and weight
-opt.afile = 'run8_41t_CO';
-opt.abswt = 1.2;
+opt.afile = 'umbc_CO_49p58_Torr_17p15_C';
+opt.abswt = 12.69;
 
 %--------------------
 % get interferograms
@@ -104,15 +104,15 @@ qv2 = opt.qv2;
 figure(1); clf;
 set(gcf, 'DefaultAxesColorOrder', fovcolors);
 plot(waxis, drms, 'linewidth', 2)
-% axis([771.95, 772.0, 0.002, 0.018])
+axis([774.215, 774.245, 0.002, 0.022])
 xlabel('wavelength, nm')
 ylabel('rms fitting error')
 title(sprintf('%s, residual as a function of wlaser', pname));
 legend(fovnames, 'location', 'north')
 grid on; zoom on
 
-% saveas(gcf, 'C0_wlaser_fit', 'png')
-% saveas(gcf, 'C0_wlaser_fit', 'fig')
+saveas(gcf, 'C0_wlaser_fit', 'png')
+saveas(gcf, 'C0_wlaser_fit', 'fig')
 
 % ------------------
 % plot obs and calc
@@ -129,8 +129,8 @@ title(sprintf('%s, obs and calc transmittance', pname));
 legend(fovnames, 'location', 'southwest')
 grid on; zoom on
 
-% saveas(gcf, 'C0_obs_and_calc', 'png')
-% saveas(gcf, 'C0_obs_and_calc', 'fig')
+saveas(gcf, 'C0_obs_and_calc', 'png')
+saveas(gcf, 'C0_obs_and_calc', 'fig')
 
 % --------------------
 % plot obs minus calc

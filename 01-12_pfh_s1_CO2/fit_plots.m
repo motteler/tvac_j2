@@ -33,8 +33,8 @@ title('obs minus calc FOV 5')
 legend(fname{ix}, 'location', 'southeast')
 grid on; zoom on
 
-% saveas(gcf, 'CO2_breakout_1', 'fig')
-% saveas(gcf, 'CO2_breakout_1', 'png')
+saveas(gcf, 'CO2_breakout_1', 'fig')
+saveas(gcf, 'CO2_breakout_1', 'png')
 
 figure(5); clf
 set(gcf, 'DefaultAxesColorOrder', fcolor);
@@ -61,8 +61,8 @@ title('obs minus calc corner FOVs')
 legend(fname{ix}, 'location', 'southeast')
 grid on; zoom on
 
-% saveas(gcf, 'CO2_breakout_2', 'fig')
-% saveas(gcf, 'CO2_breakout_2', 'png')
+saveas(gcf, 'CO2_breakout_2', 'fig')
+saveas(gcf, 'CO2_breakout_2', 'png')
 
 return
 

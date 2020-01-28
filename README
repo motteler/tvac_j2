@@ -20,8 +20,6 @@ fit_run   - set up test params, call fit_tran, plot results
 
 fit_plots - FOV breakouts and other plots, followup to fit_run
 
-fit_parts - run fit_tran on a set of obs partitions 
-
 spec_test1 - quick look at gas cell count spectra with data from
     ccast/MITreader380b/read_cris_ccsds and ccast/source routines
     inst_params and igm2spec
