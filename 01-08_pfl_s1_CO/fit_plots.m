@@ -33,7 +33,7 @@ title('obs minus calc FOV 5')
 legend(fname{ix}, 'location', 'southeast')
 grid on; zoom on
 
-saveas(gcf, 'C0_breakout_1', 'png')
+saveas(gcf, 'CO_breakout_1', 'png')
 saveas(gcf, 'CO_breakout_1', 'fig')
 
 figure(5); clf

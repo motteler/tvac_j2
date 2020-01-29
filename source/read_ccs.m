@@ -38,8 +38,8 @@ gas_cell_temp_time = [];
 for i = 1 : nfile
 
   d1 = importdata(fullfile(tdir(i).folder, tdir(i).name));
-
-  for j = 1 : length(d1.data)
+  [nrow, ~] = size(d1.data);
+  for j = 1 : nrow
 
     % get tlm_id as a string
     tlm_id = d1.textdata(j+1,1);
@@ -70,10 +70,14 @@ htbb_temp_b_date = datetime(htbb_temp_b_time, 'ConvertFrom', 'datenum');
 inficon_press_date = datetime(inficon_press_time, 'ConvertFrom', 'datenum');
 gas_cell_temp_date = datetime(gas_cell_temp_time, 'ConvertFrom', 'datenum');
 
+% integer day of month
+dn = str2num(dd);
+
 figure(1); clf
 subplot(3,1,1)
 plot(htbb_temp_a_date, htbb_temp_a_val, ...
      htbb_temp_b_date, htbb_temp_b_val, 'linewidth', 2)
+xlim([datetime(2020, 1, dn), datetime(2020, 1, dn+1)])
 ylim([310, 370]);
 title('HTBB Temperatures')
 % legend('A', 'B', 'location', 'southwest')
@@ -83,6 +87,7 @@ grid on
 
 subplot(3,1,2)
 plot(inficon_press_date, inficon_press_val, 'linewidth', 2)
+xlim([datetime(2020, 1, dn), datetime(2020, 1, dn+1)])
 ylim([0, 110]);
 title('gas cell pressure')
 ylabel('Torr')
@@ -90,9 +95,11 @@ grid on
 
 subplot(3,1,3)
 plot(gas_cell_temp_date, gas_cell_temp_val)
-ylim([14.6, 15.4]);
+xlim([datetime(2020, 1, dn), datetime(2020, 1, dn+1)])
+% ylim([14.6, 15.4]);
 title('gas cell temperature')
 ylabel('degrees (C)')
+xlabel('time')
 grid on
 
 saveas(gcf, sprintf('css_summary_%s_jan', dd), 'png')

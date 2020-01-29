@@ -1,3 +1,6 @@
+%
+% copy out umbc-lbl from Sergio's first gas set
+%
 
 clear all
 load gascell_1_gid_2_params_jan27_2020_ip.mat

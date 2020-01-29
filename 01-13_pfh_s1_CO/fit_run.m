@@ -36,7 +36,7 @@ wgrid = -0.01 : 0.0001 : 0.02;
 waxis = wlaser + wgrid;
 
 % run name for plots
-pname = 'C0, 13 Jan 2020 PFH side 1';
+pname = 'CO, 13 Jan 2020 PFH side 1';
 
  %---------------------
 % params for fit_tran
@@ -111,8 +111,8 @@ title(sprintf('%s, residual as a function of wlaser', pname));
 legend(fovnames, 'location', 'north')
 grid on; zoom on
 
-saveas(gcf, 'C0_wlaser_fit', 'png')
-saveas(gcf, 'C0_wlaser_fit', 'fig')
+saveas(gcf, 'CO_wlaser_fit', 'png')
+saveas(gcf, 'CO_wlaser_fit', 'fig')
 
 % ------------------
 % plot obs and calc
@@ -120,17 +120,16 @@ saveas(gcf, 'C0_wlaser_fit', 'fig')
 
 figure(2); clf
 set(gcf, 'DefaultAxesColorOrder', fovcolors);
-
 plot(vobs4, tobs5, vobs4, tcal4, 'k-.');
-axis([qv1, qv2, 0, 1.1])
+axis([qv1, qv2, 0.2, 1.1])
 xlabel('wavenumber')
 ylabel('transmittance')
 title(sprintf('%s, obs and calc transmittance', pname));
-legend(fovnames, 'location', 'southwest')
+legend(fovnames, 'location', 'southeast')
 grid on; zoom on
 
-saveas(gcf, 'C0_obs_and_calc', 'png')
-saveas(gcf, 'C0_obs_and_calc', 'fig')
+saveas(gcf, 'CO_obs_and_calc', 'png')
+saveas(gcf, 'CO_obs_and_calc', 'fig')
 
 % --------------------
 % plot obs minus calc

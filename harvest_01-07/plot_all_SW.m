@@ -10,21 +10,25 @@ dbase = datenum('8 Jan 2020');
 t1 = hhmmss_to_hour('00:00:00');
 t2 = hhmmss_to_hour('00:11:17');
 plot_leg(d13, dbase, t1, t2, 'SW ET2', 1);
+saveas(gcf, '01-08_SW_ET2', 'png')
 
 % ET1, 335K, cell empty, HTBB drifty
 t1 = hhmmss_to_hour('02:21:09');
 t2 = hhmmss_to_hour('02:33:43');
 plot_leg(d13, dbase, t1, t2, 'SW ET1', 2);
+saveas(gcf, '01-08_SW_ET1', 'png')
 
 % FT1, 335K, 45.91 torr, 14.85C
 t1 = hhmmss_to_hour('02:58:03');
 t2 = hhmmss_to_hour('03:11:02');
 plot_leg(d13, dbase, t1, t2, 'SW FT1', 3);
 subplot(3,1,2); ylim([45.9, 45.92]) 
+saveas(gcf, '01-08_SW_FT1', 'png')
 
 % FT2, 320K, 45.93 torr, 14.85C, HTBB drifty
 t1 = hhmmss_to_hour('04:55:57');
 t2 = hhmmss_to_hour('05:09:35');
 plot_leg(d13, dbase, t1, t2, 'SW FT2', 4);
 subplot(3,1,2);  ylim([45.92, 45.94])
+saveas(gcf, '01-08_SW_FT2', 'png')
 

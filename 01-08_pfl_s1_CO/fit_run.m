@@ -36,7 +36,7 @@ wgrid = -0.01 : 0.0001 : 0.02;
 waxis = wlaser + wgrid;
 
 % run name for plots
-pname = 'C0, 8 Jan 2020 PFH side 1';
+pname = 'CO, 8 Jan 2020 PFH side 1';
 
 %---------------------
 % params for fit_tran
@@ -111,8 +111,8 @@ title(sprintf('%s, residual as a function of wlaser', pname));
 legend(fovnames, 'location', 'north')
 grid on; zoom on
 
-saveas(gcf, 'C0_wlaser_fit', 'fig')
-saveas(gcf, 'C0_wlaser_fit', 'png')
+saveas(gcf, 'CO_wlaser_fit', 'fig')
+saveas(gcf, 'CO_wlaser_fit', 'png')
 
 
 % ------------------
@@ -130,8 +130,8 @@ title(sprintf('%s, obs and calc transmittance', pname));
 legend(fovnames, 'location', 'southwest')
 grid on; zoom on
 
-saveas(gcf, 'C0_obs_and_calc', 'png')
-saveas(gcf, 'C0_obs_and_calc', 'fig')
+saveas(gcf, 'CO_obs_and_calc', 'png')
+saveas(gcf, 'CO_obs_and_calc', 'fig')
 
 % --------------------
 % plot obs minus calc
