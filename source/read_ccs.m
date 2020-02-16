@@ -1,22 +1,26 @@
 %
 %  read_ccs - read and tabulate selected CCS fields
 %
-% loop on a day's worth of TVAC CCS files and tabulate HTBB temps,
-% gas cell temp, and gas cell pressure.  does an overview plot after
-% the tabulation
-%
+% Loop on a day's worth of TVAC CCS files and tabulate HTBB temps,
+% gas cell temp, and gas cell pressure.  Data for the day is saved
+% in a file ccs_data_mm_dd.mat where mm is 2-digit month and dd is
+% 2-digit day.  Month is set below in the test directory format, as
+% both a number and name.  Does a summary plot after the tabulation.
+% 
 
 clear all
 
 % get the date
-dd = input('2 digit date > ', 's');
+% ms = '01_Jan';
+  ms = '02_Feb';
+ds = input('2 digit day-of-month > ', 's');
 
 % local TVAC data home
 p1 = '/asl/gravite/j2cris/readonly/extracted/hourly_archives/J2';
 
-% matlab globbing for test data (set date here)
-p2 = 'TEM_Collection/CCS/Collection/2020/01_Jan/%s/*/*.ccs';
-p2 = sprintf(p2, dd);
+% matlab globbing for test data
+p2 = 'TEM_Collection/CCS/Collection/2020/%s/%s/*/*.ccs';
+p2 = sprintf(p2, ms, ds);
 
 % matlab style directory records
 p3 = fullfile(p1, p2);
@@ -70,14 +74,14 @@ htbb_temp_b_date = datetime(htbb_temp_b_time, 'ConvertFrom', 'datenum');
 inficon_press_date = datetime(inficon_press_time, 'ConvertFrom', 'datenum');
 gas_cell_temp_date = datetime(gas_cell_temp_time, 'ConvertFrom', 'datenum');
 
-% integer day of month
-dn = str2num(dd);
+mn = str2num(ms(1:2));   % integer month
+dn = str2num(ds);        % integer day of month
 
 figure(1); clf
 subplot(3,1,1)
 plot(htbb_temp_a_date, htbb_temp_a_val, ...
      htbb_temp_b_date, htbb_temp_b_val, 'linewidth', 2)
-xlim([datetime(2020, 1, dn), datetime(2020, 1, dn+1)])
+xlim([datetime(2020, mn, dn), datetime(2020, mn, dn+1)])
 ylim([310, 370]);
 title('HTBB Temperatures')
 % legend('A', 'B', 'location', 'southwest')
@@ -87,7 +91,7 @@ grid on
 
 subplot(3,1,2)
 plot(inficon_press_date, inficon_press_val, 'linewidth', 2)
-xlim([datetime(2020, 1, dn), datetime(2020, 1, dn+1)])
+xlim([datetime(2020, mn, dn), datetime(2020, mn, dn+1)])
 ylim([0, 110]);
 title('gas cell pressure')
 ylabel('Torr')
@@ -95,15 +99,16 @@ grid on
 
 subplot(3,1,3)
 plot(gas_cell_temp_date, gas_cell_temp_val)
-xlim([datetime(2020, 1, dn), datetime(2020, 1, dn+1)])
+xlim([datetime(2020, mn, dn), datetime(2020, mn, dn+1)])
 % ylim([14.6, 15.4]);
 title('gas cell temperature')
 ylabel('degrees (C)')
 xlabel('time')
 grid on
 
-saveas(gcf, sprintf('css_summary_%s_jan', dd), 'png')
-saveas(gcf, sprintf('css_summary_%s_jan', dd), 'fig')
+dstr = [ms(1:2), '_', ds];
+save(sprintf('ccs_data_%s', dstr));
 
-save(sprintf('read_ccs_%s', dd));
+saveas(gcf, sprintf('css_summary_%s', dstr), 'fig')
+saveas(gcf, sprintf('css_summary_%s', dstr), 'png')
 

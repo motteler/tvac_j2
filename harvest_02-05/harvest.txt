@@ -1,0 +1,35 @@
+
+5 Feb 2020 CrIS TVAC MN side 2 harvest notes
+
+TVAC analysis home:
+  /asl/gravite/j2cris/readonly/extracted/hourly_archives/J2
+
+get test segment start stop times
+  cat SQLLOGS/2020/02_Feb/{05..06}/??00/*.cmd | grep ILS_Spectral_Cal | more
+
+browse tcr files for PFL, PFH, MN, Plateau number:
+  more SQLLOGS/2020/02_Feb/{05..06}/??00/*.tcr
+
+packets are 8 seconds long, T1 > T2
+
+----- CO2 LW MN side 2, 5 Feb -----
+
+02:22:17
+02:35:16
+
+04:24:43
+04:38:52
+
+04:58:24
+05:11:39
+
+07:04:39
+07:17:28
+
+hh=~/cris/tvac_j2/02-05_mn_s2_CO2
+cat Collection/2020/02_Feb/05/0200/20200205_02_{23..34}_??_???.dat  > $hh/ET1.dat
+cat Collection/2020/02_Feb/05/0400/20200205_04_{25..37}_??_???.dat  > $hh/ET2.dat
+cat Collection/2020/02_Feb/05/0400/20200205_04_{59..59}_??_???.dat  > $hh/FT2.dat
+cat Collection/2020/02_Feb/05/0500/20200205_05_{00..10}_??_???.dat >> $hh/FT2.dat
+cat Collection/2020/02_Feb/05/0700/20200205_07_{05..16}_??_???.dat  > $hh/FT1.dat
+

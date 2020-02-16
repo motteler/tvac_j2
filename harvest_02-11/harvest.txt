@@ -1,0 +1,76 @@
+
+11-12 Feb 2020 CrIS TVAC MN side 2 harvest notes
+
+TVAC analysis home:
+  /asl/gravite/j2cris/readonly/extracted/hourly_archives/J2
+
+get test segment start stop times
+  cat SQLLOGS/2020/02_Feb/{11..12}/??00/*.cmd | grep ILS_Spectral_Cal | more
+
+browse tcr files for PFL, PFH, MN, Plateau number:
+  more SQLLOGS/2020/02_Feb/{11..12}/??00/*.tcr
+
+packets are 8 seconds long, T1 > T2
+
+----- CO2 LW MN side 1, 11 Feb -----
+
+00:37:52
+00:50:47
+
+03:06:40
+03:19:49
+
+03:49:49
+04:03:12
+
+06:03:40
+06:16:45
+
+hh=~/cris/tvac_j2/02-11_mn_s1_CO2
+cat Collection/2020/02_Feb/11/0000/20200211_00_{38..49}_??_???.dat > $hh/ET2.dat
+cat Collection/2020/02_Feb/11/0300/20200211_03_{07..18}_??_???.dat > $hh/ET1.dat
+cat Collection/2020/02_Feb/11/0300/20200211_03_{50..59}_??_???.dat > $hh/FT1.dat
+cat Collection/2020/02_Feb/11/0400/20200211_04_{00..02}_??_???.dat >> $hh/FT1.dat
+cat Collection/2020/02_Feb/11/0600/20200211_06_{04..15}_??_???.dat > $hh/FT2.dat
+
+----- CH4 MW MN side 1, 11 Feb -----
+
+13:10:13
+13:23:19
+
+15:23:55
+15:38:26
+
+16:12:04
+16:26:32
+
+18:46:59
+19:00:20
+
+hh=~/cris/tvac_j2/02-11_mn_s1_CH4
+cat Collection/2020/02_Feb/11/1300/20200211_13_{11..22}_??_???.dat > $hh/ET2.dat
+cat Collection/2020/02_Feb/11/1500/20200211_15_{24..37}_??_???.dat > $hh/ET1.dat
+cat Collection/2020/02_Feb/11/1600/20200211_16_{13..25}_??_???.dat > $hh/FT1.dat
+cat Collection/2020/02_Feb/11/1800/20200211_18_{47..59}_??_???.dat > $hh/FT2.dat
+
+----- CO S MN side 1, 12 Feb -----
+
+00:16:43
+00:30:08
+
+02:40:58
+02:54:31
+
+03:19:00
+03:31:50
+
+04:57:38
+05:11:19
+
+hh=~/cris/tvac_j2/02-12_mn_s1_CO
+cat Collection/2020/02_Feb/12/0000/20200212_00_{17..29}_??_???.dat > $hh/ET2.dat
+cat Collection/2020/02_Feb/12/0200/20200212_02_{41..53}_??_???.dat > $hh/ET1.dat
+cat Collection/2020/02_Feb/12/0300/20200212_03_{20..30}_??_???.dat > $hh/FT1.dat
+cat Collection/2020/02_Feb/12/0400/20200212_04_{58..59}_??_???.dat > $hh/FT2.dat
+cat Collection/2020/02_Feb/12/0500/20200212_05_{00..10}_??_???.dat >> $hh/FT2.dat
+
