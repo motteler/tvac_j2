@@ -1,0 +1,12 @@
+%gas cell test calc summary
+%CO2
+%  8   MN s2  49.65 Torr  15.70 C
+%  9   MN s1  49.43 Torr  15.60 C
+2 49.65 15.70
+2 49.43 15.60
+%CH4
+% 10   MN s1  50.00 Torr  15.63 C
+6 50.00 15.63
+%CO
+% 11   MN s1  50.06 Torr  15.57 C
+5 50.06 15.57

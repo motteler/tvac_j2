@@ -1,17 +1,14 @@
 
-CrIS 2020 J2 TVAC tests
+CrIS J2 2020 TVAC tests
 ------------------------
 
-Updated TVAC tests for the 2020 CrIS J2 TVAC gas cell tests.  Note
-there may be some useful tests in tvac_2014 or tvac_review that are
-not in this repo yet.
+CrIS J2 Jan-Feb 2020 TVAC gas cell tests
 
 Methods
 --------
-
 Work for a particular test is done first in the harvest and then in
 the gas cell test directories, for example harvest_02-11 and then
-02-12_mn_s1_CO.  The main harvest steps are outline in harvest.txt,
+02-12_mn_s1_CO.  The main harvest steps are listed in harvest.txt,
 in each harvest directory.  Harvesting produces four CCSDS packet
 files: ET1, ET2, FT1, and FT2.dat in the gas cell test directories.
 These are translated to .mat files with source/dat2mat.m.  As a
@@ -21,12 +18,16 @@ will guarantee an up-to date bit trim mask, in btrim_cache.mat.
 The next step is to get an overview of the gas cell test data, by
 running source/read.ccs.m.  This produces a summary plot for one day,
 and saves a summary of the ccs data, for example ccs_data_02_12.mat.
-Then edit and run plot_leg_LW, MW, and SW, using start and stop times
-saved in harvest.txt, too see gas cell details of each test leg.  The
-edited plot_leg scripts become the "offical" home for the gas cell
+Then edit and run plot_legs_LW, MW, and SW, using start and stop times
+saved in harvest.txt, to see gas cell details of each test leg.  The
+edited plot_legs scripts become the "offical" home for the gas cell
 measurements.
 
-
+spec_test1 plots count spectra as a function of frequency, and (for
+a single channel) as a function of time.  This is used to trim the
+harvesting to just the ES looks.  spec_test1 gives index limits used
+by spec_test2 and fit run.  spec_test2 plots obs and calc together,
+and fit run fits obs to calcs.
 
 Directories
 ------------

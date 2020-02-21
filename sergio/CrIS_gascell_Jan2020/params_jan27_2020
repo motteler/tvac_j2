@@ -1,0 +1,21 @@
+%gas cell test calc summary
+%CO2
+%  PFL s1  45.05 torr  15.02 C  
+%  PFH s1  48.36 torr  16.65 C
+%  PFH s2  49.75 torr  17.27 C
+2 45.05 15.02
+2 48.36 16.65
+2 49.75 17.27
+%
+%CH4
+%  PFL s1  44.64 torr  14.90 C  (done)
+%  PFH s1  48.70 torr  17.17 C 
+6 44.64 14.90
+6 48.70 17.17
+%
+%CO
+%  PFL s1  45.92 torr  14.85 C
+%  PFH s1  49.58 torr  17.15 C
+5 45.92 14.85
+5 49.58 17.15
+

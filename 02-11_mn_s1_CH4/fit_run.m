@@ -13,6 +13,7 @@ addpath /asl/packages/ccast/source
 addpath /asl/packages/ccast/motmsc/utils
 addpath /asl/packages/airs_decon/test
 addpath ../source
+addpath ../gas_calcs
 
 %------------------
 % basic run params
@@ -52,7 +53,7 @@ opt.qv2   = 1380;           % fitting interval end
 
 % gas file and weight
 opt.abswt = 12.69;
-opt.afile = 'umbc_CH4_48p70_Torr_17p17_C';
+opt.afile = 'umbc_CH4_50p00_Torr_15p63_C.mat';
 
 %--------------------
 % get interferograms

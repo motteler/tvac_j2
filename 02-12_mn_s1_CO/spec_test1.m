@@ -62,10 +62,10 @@ t2 = hour_axis(end);
 % specify time spans by test leg
 [~, tleg, ~] = fileparts(mfile);
 switch tleg
-  case 'ET1' % , t1 = 15.484;  t2 = 15.517;
-  case 'ET2' % , t1 = 13.259;  t2 = 13.293;
-  case 'FT1' % , t1 = 16.286;  t2 = 16.320;
-  case 'FT2' % , t1 = 18.868;  t2 = 18.902;
+  case 'ET1', t1 =  2.77;   t2 =  2.80;
+  case 'ET2', t1 =  0.362;  t2 =  0.395;
+  case 'FT1', t1 =  3.402;  t2 =  3.435;
+  case 'FT2', t1 =  5.046;  t2 =  5.08;
 end
 
 % take time subsets

@@ -24,6 +24,7 @@ addpath /asl/packages/ccast/source
 addpath /asl/packages/ccast/motmsc/utils
 addpath /asl/packages/airs_decon/test
 addpath ../source
+addpath ../gas_calcs
 
 % location for test data
 test_dir = '.';
@@ -93,7 +94,7 @@ tobs = bandpass(inst.freq, tobs, user.v1, user.v2, user.vr);
 
 % get calc values
 abswt = 12.69;
-d1 = load('umbc_CO2_49p75_Torr_17p27_C');
+d1 = load('umbc_CO2_49p43_Torr_15p60_C');
 [tcal, vcal] = kc2inst(inst, user, exp(-d1.absc * abswt), d1.fr);
 
 % check frequency grids

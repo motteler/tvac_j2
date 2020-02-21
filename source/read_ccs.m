@@ -108,7 +108,5 @@ grid on
 
 dstr = [ms(1:2), '_', ds];
 save(sprintf('ccs_data_%s', dstr));
-
 saveas(gcf, sprintf('css_summary_%s', dstr), 'fig')
-saveas(gcf, sprintf('css_summary_%s', dstr), 'png')
 

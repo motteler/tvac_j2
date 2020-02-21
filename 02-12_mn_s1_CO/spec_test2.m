@@ -21,9 +21,10 @@
 
 % paths and libs
 addpath /asl/packages/ccast/source
-addpath /asl/packages/ccast/motmsc/utils
+addpath /asl/packages/ccast/motmsc/time
 addpath /asl/packages/airs_decon/test
 addpath ../source
+addpath ../gas_calcs
 
 % location for test data
 test_dir = '.';
@@ -43,15 +44,15 @@ fprintf(1, 'eng neon=%.5f assigned neon=%.5f, wlaser=%.5f\n', ...
   d1.packet.NeonCal.NeonGasWavelength, opt2.neonWL, wlaser);
 
 % get instrument params
-band = 'MW';
+band = 'SW';
 opt1 = struct; 
 opt1.user_res = 'hires';
 opt1.inst_res = 'hires4';
 [inst, user] = inst_params(band, wlaser, opt1);
 
 % get the SA inverse matrix
-sfile = '../inst_data/SAinv_default_HR4_MW.mat';
-opt1.MW_sfile = sfile;
+sfile = '../inst_data/SAinv_default_HR4_SW.mat';
+opt1.SW_sfile = sfile;
 Sinv = getSAinv(inst, opt1);
 
 % test data files
@@ -70,10 +71,10 @@ count_FT2 = igm2spec(read_igm(band, mat_ft2, sdir), inst);
 count_FT1 = igm2spec(read_igm(band, mat_ft1, sdir), inst);
 
 % option to take subsets
-count_ET2 = count_ET2(:, :, 28:334);
-count_ET1 = count_ET1(:, :, 33:330);
+count_ET2 = count_ET2(:, :, 44:341);
+count_ET1 = count_ET1(:, :, 47:317);
 count_FT2 = count_FT2(:, :, 31:337);
-count_FT1 = count_FT1(:, :, 29:335);
+count_FT1 = count_FT1(:, :, 35:332);
 
 % take means of the obs
 mean_ET2 = mean(count_ET2, 3);
@@ -93,7 +94,7 @@ tobs = bandpass(inst.freq, tobs, user.v1, user.v2, user.vr);
 
 % get calc values
 abswt = 12.69;
-d1 = load('umbc_CH4_48p70_Torr_17p17_C.mat');
+d1 = load('umbc_CO_50p06_Torr_15p57_C');
 [tcal, vcal] = kc2inst(inst, user, exp(-d1.absc * abswt), d1.fr);
 
 % check frequency grids
@@ -105,7 +106,7 @@ d1 = load('umbc_CH4_48p70_Torr_17p17_C.mat');
 
 figure(1); clf
 plot(freq2, tobs2, freq2, tcal2, 'k-.');
-% xlim([600, 1150])
+xlim([2100, 2600])
 title('observed and calculated transmittance')
 legend(fovnames, 'location', 'south')
 grid; zoom on
@@ -118,9 +119,9 @@ grid on; zoom on
 
 figure(2); clf
 plot(freq2, tobs2, freq2, tcal2, 'k-.');
-xlim([1260,1270])
+xlim([2160,2200])
 title('observed and calculated transmittance detail')
-legend(fovnames, 'location', 'northwest')
+legend(fovnames, 'location', 'southeast')
 grid; zoom on
 xlabel('wavenumber')
 ylabel('transmittance')

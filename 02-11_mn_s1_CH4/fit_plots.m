@@ -34,8 +34,8 @@ title(sprintf('%s, obs minus calc FOV 5', pname));
 legend(fname{ix}, 'location', 'southeast')
 grid on; zoom on
 
-saveas(gcf, 'CH4_breakout_1', 'fig')
-saveas(gcf, 'CH4_breakout_1', 'png')
+% saveas(gcf, 'CH4_breakout_1', 'fig')
+% saveas(gcf, 'CH4_breakout_1', 'png')
 
 figure(5); clf
 set(gcf, 'DefaultAxesColorOrder', fcolor);
@@ -62,8 +62,8 @@ title(sprintf('%s, obs minus calc corner FOVs', pname));
 legend(fname{ix}, 'location', 'southeast')
 grid on; zoom on
 
-saveas(gcf, 'CH4_breakout_2', 'fig')
-saveas(gcf, 'CH4_breakout_2', 'png')
+% saveas(gcf, 'CH4_breakout_2', 'fig')
+% saveas(gcf, 'CH4_breakout_2', 'png')
 
 return
 

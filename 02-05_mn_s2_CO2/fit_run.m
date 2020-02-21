@@ -33,7 +33,7 @@ fprintf(1, 'eng neon=%.5f assigned neon=%.5f, wlaser=%.5f\n', ...
   d1.packet.NeonCal.NeonGasWavelength, opt2.neonWL, wlaser);
 
 % set the search grid
-wgrid = -0.01 : .0002 : 0.02;
+wgrid = -0.01 : .0001 : 0.02;
 waxis = wlaser + wgrid;
 
 % run name for plots
@@ -53,7 +53,7 @@ opt.LW_sfile = '../inst_data/SAinv_default_HR4_LW.mat';
 
 % gas file and weight
 opt.abswt = 12.69;
-opt.afile = 'umbc_CO2_49p75_Torr_17p27_C';
+opt.afile = 'umbc_CO2_49p43_Torr_15p60_C';
 
 %--------------------
 % get interferograms

@@ -13,12 +13,13 @@ addpath /asl/packages/ccast/source
 addpath /asl/packages/ccast/motmsc/utils
 addpath /asl/packages/airs_decon/test
 addpath ../source
+addpath ../gas_calcs
 
 %------------------
 % basic run params
 %------------------
 
-band = 'MW';      % set the band
+band = 'SW';      % set the band
 test_dir = '.';   % location of test data
 sdir = 0;         % sweep direction
 
@@ -37,7 +38,7 @@ wgrid = -0.01 : .0001 : 0.02;
 waxis = wlaser + wgrid;
 
 % run name for plots
-pname = 'CH4, 11 Feb 2020 MN side 1';
+pname = 'CO, 12 Feb 2020 MN side 1';
 
 %---------------------
 % params for fit_tran
@@ -46,13 +47,13 @@ pname = 'CH4, 11 Feb 2020 MN side 1';
 opt = struct; 
 opt.user_res = 'hires';
 opt.inst_res = 'hires4';
-opt.MW_sfile = '../inst_data/SAinv_default_HR4_MW.mat';
-opt.qv1   = 1220;           % fitting interval start
-opt.qv2   = 1380;           % fitting interval end
+opt.SW_sfile = '../inst_data/SAinv_default_HR4_SW.mat';
+opt.qv1   = 2160;           % fitting interval start
+opt.qv2   = 2240;           % fitting interval end
 
 % gas file and weight
 opt.abswt = 12.69;
-opt.afile = 'umbc_CH4_48p70_Torr_17p17_C';
+opt.afile = 'umbc_CO_50p06_Torr_15p57_C';
 
 %--------------------
 % get interferograms
@@ -72,10 +73,10 @@ igm.FT2 = read_igm(band, mat_ft2, sdir);
 igm.FT1 = read_igm(band, mat_ft1, sdir);
 
 % option to take subsets
-igm.ET2 = igm.ET2(:, :, 28:334);
-igm.ET1 = igm.ET1(:, :, 33:330);
+igm.ET2 = igm.ET2(:, :, 44:341);
+igm.ET1 = igm.ET1(:, :, 47:317);
 igm.FT2 = igm.FT2(:, :, 31:337);
-igm.FT1 = igm.FT1(:, :, 29:335);
+igm.FT1 = igm.FT1(:, :, 35:332);
 
 %---------------
 % call fit_tran
@@ -112,8 +113,8 @@ title(sprintf('%s, residual as a function of wlaser', pname));
 legend(fovnames, 'location', 'north')
 grid on; zoom on
 
-% saveas(gcf, 'CH4_wlaser_fit', 'fig')
-% saveas(gcf, 'CH4_wlaser_fit', 'png')
+% saveas(gcf, 'CO_wlaser_fit', 'fig')
+% saveas(gcf, 'CO_wlaser_fit', 'png')
 
 % ------------------
 % plot obs and calc
@@ -129,8 +130,8 @@ title(sprintf('%s, obs and calc transmittance', pname));
 legend(fovnames, 'location', 'southeast')
 grid on; zoom on
 
-% saveas(gcf, 'CH4_obs_and_calc', 'fig')
-% saveas(gcf, 'CH4_obs_and_calc', 'png')
+% saveas(gcf, 'CO_obs_and_calc', 'fig')
+% saveas(gcf, 'CO_obs_and_calc', 'png')
 
 % --------------------
 % plot obs minus calc

@@ -15,7 +15,7 @@ plot(htbb_temp_a_hour, d1.htbb_temp_a_val, ...
      htbb_temp_b_hour, d1.htbb_temp_b_val, 'linewidth', 2)
 xlim([t1,t2])
 title([tstr, ' HTBB Temperatures'])
-legend('A', 'B', 'location', 'southwest')
+legend('A', 'B', 'location', 'east')
 ylabel('degrees (K)')
 grid on; zoom on
 

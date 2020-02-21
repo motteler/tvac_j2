@@ -13,6 +13,7 @@ addpath /asl/packages/ccast/source
 addpath /asl/packages/ccast/motmsc/utils
 addpath /asl/packages/airs_decon/test
 addpath ../source
+addpath ../gas_calcs
 
 %------------------
 % basic run params
@@ -53,7 +54,7 @@ opt.LW_sfile = '../inst_data/SAinv_default_HR4_LW.mat';
 
 % gas file and weight
 opt.abswt = 12.69;
-opt.afile = 'umbc_CO2_49p75_Torr_17p27_C';
+opt.afile = 'umbc_CO2_49p65_Torr_15p70_C';
 
 %--------------------
 % get interferograms
