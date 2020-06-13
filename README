@@ -1,8 +1,11 @@
 
-CrIS J2 2020 TVAC tests
-------------------------
+CrIS J2 Jan-Feb 2020 TVAC gas cell tests and analysis
+------------------------------------------------------
 
-CrIS J2 Jan-Feb 2020 TVAC gas cell tests
+Note that the git repo does not include the mat files from the asl
+version.  These would add around 24G, to much for github.  So you
+can't run or rerun the tests from the repo.  The github version does
+include all fig and png files for the reports.
 
 Methods
 --------
@@ -31,7 +34,7 @@ and fit run fits obs to calcs.
 
 Directories
 ------------
-doc            - notes and reports
+reports        - final reports
 source         - common source code
 inst_data      - instrument data, mainly from ccast
 mm-dd_*_s?_*   - tests by date, segment, side, and gas
