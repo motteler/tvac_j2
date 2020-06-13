@@ -1,0 +1,155 @@
+% Created 2020-01-14 Tue 21:14
+% Intended LaTeX compiler: pdflatex
+\documentclass[10pt,t]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usetheme{default}
+\date{\today}
+\title{Slides for Howard}
+\date{\textit{\footnotesize July 3, 2019}}
+\input beamer_setup
+\usetheme{metropolis}
+\metroset{titleformat title=allcaps}
+\renewcommand{\UrlFont}{\small\tt}
+\renewcommand*{\UrlFont}{\footnotesize}
+\tolerance=1000
+\RequirePackage{fancyvrb}
+\DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\footnotesize}
+\author{L.~Larrabee~Strow, Howard Motteler, Sergio DeSouza-Machado, and Steven Buczkowski (UMBC)}
+\begin{document}
+
+\maketitle
+
+\begin{frame}[label={sec:orgdc40122}]{Focal Plane Fits to CH\textsubscript{4} PPM Shifts}
+\begin{small}
+
+\begin{itemize}
+\item Neon already increased from Engr. Pkt by 16.7 ppm
+
+\item Metrology laser offsets from gas cell spectra (ppm)
+\end{itemize}
+\begin{center}
+\begin{tabular}{rrr}
+-0.65 & 2.59 & 7.77\\
+0.65 & 5.18 & 8.42\\
+5.18 & 9.07 & 13.60\\
+\end{tabular}
+\end{center}
+
+\begin{itemize}
+\item Optimum focal plane offsets, radial magnification
+\end{itemize}
+\begin{center}
+\begin{tabular}{rrl}
+dx & dy & rdr\\
+-158 & +214 & \textasciitilde{}32\\
+\hline
+unc   dx & unc   dy & unc rdr\\
+38 & 38 & \textasciitilde{}25\\
+\end{tabular}
+\end{center}
+
+\begin{itemize}
+\item Metrology laser residuals from (relative) ppm fit
+\end{itemize}
+\begin{center}
+\begin{tabular}{rrr}
+-0.24 & 0.08 & -0.49\\
+0.95 & 0 & 1.37\\
+-0.05 & -0.37 & -0.23\\
+\end{tabular}
+\end{center}
+\end{small}
+\end{frame}
+
+\begin{frame}[label={sec:org7d3bfb9}]{Focal Plane Fits to CO\textsubscript{2} PPM Shifts}
+\begin{small}
+
+\begin{itemize}
+\item Metrology laser offsets from gas cell spectra (ppm)
+\end{itemize}
+\begin{center}
+\begin{tabular}{rrr}
+-3.24 & 1.94 & 7.12\\
+-3.24 & 5.18 & 9.07\\
+1.30 & 7.12 & 11.01\\
+\end{tabular}
+\end{center}
+
+\begin{itemize}
+\item Optimum focal plane offsets, radial magnification
+\end{itemize}
+\begin{center}
+\begin{tabular}{rrl}
+dx & dy & rdr\\
+-118 & +280 & \textasciitilde{}44\\
+\hline
+unc   dx & unc   dy & unc rdr\\
+58 & 58 & \textasciitilde{}44\\
+\end{tabular}
+\end{center}
+
+\begin{itemize}
+\item Metrology laser residuals from (relative) ppm fit
+\end{itemize}
+\begin{center}
+\begin{tabular}{rrr}
+-0.72 & 0.21 & -0.31\\
+2.30 & 0 & 0.76\\
+-0.75 & -0.44 & 0.37\\
+\end{tabular}
+\end{center}
+\end{small}
+\end{frame}
+
+
+\begin{frame}[label={sec:org7fd0465}]{Focal Plane Fits to CO PPM Shifts}
+\begin{small}
+
+\begin{itemize}
+\item Metrology laser offsets from gas cell spectra (ppm)
+\end{itemize}
+\begin{center}
+\begin{tabular}{rrr}
+1.94 & 4.53 & 10.36\\
+1.94 & 4.53 & 9.07\\
+6.48 & 8.42 & 12.31\\
+\end{tabular}
+\end{center}
+
+\begin{itemize}
+\item Optimum focal plane offsets, radial magnification
+\end{itemize}
+\begin{center}
+\begin{tabular}{rrl}
+dx & dy & rdr\\
+-90 & +186 & \textasciitilde{}103\\
+\hline
+unc   dx & unc   dy & unc rdr\\
+36 & 36 & \textasciitilde{}24\\
+\end{tabular}
+\end{center}
+
+\begin{itemize}
+\item Metrology laser residuals from (relative) ppm fit
+\end{itemize}
+\begin{center}
+\begin{tabular}{rrr}
+0.49 & -0.15 & -0.82\\
+0.62 & 0 & 0.60\\
+-0.61 & -0.59 & 0.71\\
+\end{tabular}
+\end{center}
+\end{small}
+\end{frame}
+\end{document}
